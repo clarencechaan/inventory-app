@@ -1,8 +1,40 @@
 body {
-  padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  margin: 0;
 }
 
 a {
-  color: #00B7FF;
+  text-decoration: none;
+  color: black;
+}
+
+.header {
+  width: 100%;
+  border-bottom: 1px solid lightgray;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  column-gap: 96px;
+  font-size: 18px;
+  font-family: "Thasadith", sans-serif;
+  padding: 0 160px 0 80px;
+  box-sizing: border-box;
+}
+
+.logo {
+  font-family: "Anton", sans-serif;
+  font-size: 60px;
+  margin-right: auto;
+}
+
+.header > a {
+  transition: 0.3s;
+}
+
+.header > a:not(:first-child):hover {
+  color: red;
+}
+
+.red {
+  color: red;
 }

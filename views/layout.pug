@@ -3,5 +3,15 @@ html
   head
     title= title
     link(rel='stylesheet', href='/stylesheets/style.css')
+    link(rel="preconnect" href="https://fonts.googleapis.com")
+    link(rel="preconnect" href="https://fonts.gstatic.com" crossorigin)
+    link(href="https://fonts.googleapis.com/css2?family=Anton&family=Thasadith&display=swap" rel="stylesheet")
   body
+    .header
+      a(href="/shop").logo
+        span Game
+        span.red Go
+      a(href="/shop/games") GAMES
+      a(href="/shop/gameconsoles") CONSOLES
+      a(href="/shop/accessories") ACCESSORIES
     block content

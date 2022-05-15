@@ -1,2 +1,4 @@
 node_modules
 mongodb-url.txt
+.DS_Store
+public/.DS_Store

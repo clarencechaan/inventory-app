@@ -18,7 +18,7 @@ exports.index = function (req, res) {
     },
     function (err, results) {
       res.render("index", {
-        title: "Video Game Store",
+        title: "GameGo",
         error: err,
         data: results,
       });
