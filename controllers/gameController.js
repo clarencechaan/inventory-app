@@ -1,4 +1,30 @@
 var Game = require("../models/game");
+var Accessory = require("../models/accessory");
+var GameConsole = require("../models/gameconsole");
+var async = require("async");
+
+exports.index = function (req, res) {
+  async.parallel(
+    {
+      game_count: function (callback) {
+        Game.countDocuments({}, callback); // Pass an empty object as match condition to find all documents of this collection
+      },
+      accessory_count: function (callback) {
+        Accessory.countDocuments({}, callback);
+      },
+      gameconsole_count: function (callback) {
+        GameConsole.countDocuments({ status: "Available" }, callback);
+      },
+    },
+    function (err, results) {
+      res.render("index", {
+        title: "Video Game Store",
+        error: err,
+        data: results,
+      });
+    }
+  );
+};
 
 // Display list of all Games.
 exports.game_list = function (req, res) {

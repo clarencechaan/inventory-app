@@ -9,8 +9,8 @@ var genre_controller = require("../controllers/genreController");
 
 /// ACCESSORY ROUTES ///
 
-// GET catalog home page.
-router.get("/", accessory_controller.index);
+// GET shop home page.
+router.get("/", game_controller.index);
 
 // GET request for creating an Accessory. NOTE This must come before routes that display Accessory (uses id).
 router.get("/accessory/create", accessory_controller.accessory_create_get);
@@ -40,7 +40,7 @@ router.post(
 router.get("/accessory/:id", accessory_controller.accessory_detail);
 
 // GET request for list of all Accessory items.
-router.get("/accessory", accessory_controller.accessory_list);
+router.get("/accessories", accessory_controller.accessory_list);
 
 /// GAMECONSOLE ROUTES ///
 
