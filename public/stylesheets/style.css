@@ -263,9 +263,10 @@ a {
   font-weight: 700;
   background-color: rgb(254, 76, 80);
   color: white;
+  cursor: pointer;
 }
 
-.item > .item-window {
+.item .item-window {
   opacity: 0;
   position: absolute;
   width: 100%;
@@ -310,10 +311,15 @@ a {
   margin-top: 41px;
   height: 540px;
   width: 100vw;
+  padding: 0 60px 0 60px;
+  box-sizing: border-box;
   background-color: lightgray;
   display: flex;
   justify-content: center;
   align-items: center;
+  background-image: url("/images/switch.jpg");
+  background-size: cover;
+  background-position: center;
 }
 
 .deal-content {
@@ -355,4 +361,45 @@ a {
 
 .circle .unit {
   font-weight: 600;
+}
+
+.best-sellers {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 48px;
+}
+
+.best-sellers > .items {
+  margin-top: 40px;
+}
+
+.info-bar {
+  height: 100px;
+  width: 1120px;
+  display: flex;
+}
+
+.info-item {
+  flex: 1;
+  background-color: rgb(243, 243, 243);
+  border-right: 1px solid white;
+  display: flex;
+  align-items: center;
+}
+
+.info-item img {
+  width: 30px;
+  height: 30px;
+  margin-left: 25px;
+}
+
+.info-item .info-texts {
+  padding-left: 22px;
+  font-weight: 600;
+}
+
+.info-item .info-texts > :last-child {
+  font-size: 12px;
+  color: rgb(104, 104, 104);
 }
