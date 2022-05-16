@@ -378,6 +378,8 @@ a {
   height: 100px;
   width: 1120px;
   display: flex;
+  margin-top: 41px;
+  margin-bottom: 48px;
 }
 
 .info-item {
@@ -386,12 +388,13 @@ a {
   border-right: 1px solid white;
   display: flex;
   align-items: center;
+  padding: 0 25px 0 25px;
+  box-sizing: border-box;
 }
 
 .info-item img {
   width: 30px;
   height: 30px;
-  margin-left: 25px;
 }
 
 .info-item .info-texts {
@@ -402,4 +405,20 @@ a {
 .info-item .info-texts > :last-child {
   font-size: 12px;
   color: rgb(104, 104, 104);
+}
+
+.footer {
+  width: 100vw;
+  height: 120px;
+  background-color: rgb(243, 243, 243);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.footer a {
+  font-weight: 600;
+  color: rgb(254, 76, 80);
+  text-decoration: underline;
 }
