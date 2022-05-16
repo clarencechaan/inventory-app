@@ -1,5 +1,65 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
+  .hero 
+    .hero-content
+      div
+        .small XBOX SERIES X &amp; PLAYSTATION 5 NOW IN STOCK
+        .big The next generation of gaming is here.
+        a(href="/shop/gameconsoles").shop-now-btn SHOP NOW
+  .main
+    .main-content
+      .shop-categories
+        .shop-category(style='background-image: url(/images/gameboxes.jpg);')
+          .shop-btn
+            a(href="/shop/games") GAMES
+        .shop-category(style='background-image: url(/images/xbox.jpg);')
+          .shop-btn
+            a(href="/shop/gameconsoles") CONSOLES
+        .shop-category(style='background-image: url(/images/accessories.jpg);')
+          .shop-btn
+            a(href="/shop/accessories") ACCESSORIES
+      .new-arrivals
+        h1 New Arrivals
+        .underline
+        .category-picker
+          button.selected ALL
+          button GAMES
+          button CONSOLES
+          button ACCESSORIES
+        .items
+          .item
+            .item-preview
+              img(src="https://i.imgur.com/AMW1ox5.jpg")
+              .item-name Call of Duty: Black Ops Cold War
+              .item-price $89.99 
+            .item-window
+              button.add-to-cart ADD TO CART
+          .item
+            .item-preview
+            button.add-to-cart ADD TO CART
+          .item
+            .item-preview
+            button.add-to-cart ADD TO CART
+          .item
+            .item-preview
+            button.add-to-cart ADD TO CART
+          .item
+            .item-preview
+            button.add-to-cart ADD TO CART
+          .item
+            .item-preview
+            button.add-to-cart ADD TO CART
+          .item
+            .item-preview
+            button.add-to-cart ADD TO CART
+          .item
+            .item-preview
+            button.add-to-cart ADD TO CART
+          .item
+            .item-preview
+            button.add-to-cart ADD TO CART
+          .item
+            .item-preview
+            button.add-to-cart ADD TO CART
+
