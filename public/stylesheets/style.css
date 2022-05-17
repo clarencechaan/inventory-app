@@ -4,6 +4,7 @@ body {
   margin: 0;
   display: flex;
   flex-direction: column;
+  align-items: center;
   min-height: 100vh;
 }
 
@@ -403,7 +404,7 @@ a {
 
 .info-bar {
   height: 100px;
-  width: 100%;
+  width: 1120px;
   display: flex;
   margin-top: 41px;
 }
@@ -478,7 +479,7 @@ a {
   padding: 0 25px 0 25px;
 }
 
-.category-picker button:not(.selected):hover {
+.category-picker button:not(.selected):not(.non-interactive):hover {
   background-color: rgb(245, 245, 245);
 }
 
