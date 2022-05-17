@@ -18,7 +18,7 @@ exports.index = function (req, res) {
     },
     function (err, results) {
       res.render("index", {
-        title: "GameGo",
+        title: "Home",
         error: err,
         data: results,
       });
@@ -27,8 +27,17 @@ exports.index = function (req, res) {
 };
 
 // Display list of all Games.
-exports.game_list = function (req, res) {
-  res.send("NOT IMPLEMENTED: Game list");
+exports.game_list = function (req, res, next) {
+  Game.find({})
+    .sort({ title: 1 })
+    .populate("gameconsole")
+    .exec(function (err, list_games) {
+      if (err) {
+        return next(err);
+      }
+      //Successful, so render
+      res.render("item_list", { title: "Games", item_list: list_games });
+    });
 };
 
 // Display detail page for a specific Game.

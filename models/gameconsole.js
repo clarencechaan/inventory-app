@@ -16,4 +16,4 @@ ConsoleSchema.virtual("url").get(function () {
 });
 
 //Export model
-module.exports = mongoose.model("Console", ConsoleSchema);
+module.exports = mongoose.model("GameConsole", ConsoleSchema);

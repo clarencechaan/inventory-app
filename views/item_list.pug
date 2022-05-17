@@ -1,0 +1,30 @@
+extends layout
+
+block content
+  .main
+    .main-content
+      h1= title
+      .underline
+      .category-picker
+          button.selected ALL
+          .gameconsole-btn-window
+            button.gameconsole-btn Xbox One
+              img(src="/images/caret-down.svg")
+            .drop-down
+              button Xbox Series X
+              button PlayStation 5
+              button Xbox One
+      .items
+        each item in item_list
+          a(href=item.url).item
+            .item-preview
+              .item-preview-content
+                img(src=item.img_url)
+                .item-info
+                  .item-console #{ item.gameconsole.name }
+                  .item-name #{ item.title }
+                  .item-price $#{ item.price }
+            .item-window
+              button.add-to-cart VIEW DETAILS
+        else
+          li There are no items.
