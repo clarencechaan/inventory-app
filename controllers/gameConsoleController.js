@@ -2,7 +2,18 @@ var GameConsole = require("../models/gameconsole");
 
 // Display list of all GameConsoles.
 exports.gameconsole_list = function (req, res) {
-  res.send("NOT IMPLEMENTED: GameConsole list");
+  GameConsole.find({})
+    .sort({ name: 1 })
+    .exec(function (err, gameconsole_list) {
+      if (err) {
+        return next(err);
+      }
+      //Successful, so render
+      res.render("gameconsole_list", {
+        title: "Consoles",
+        gameconsole_list: gameconsole_list,
+      });
+    });
 };
 
 // Display detail page for a specific GameConsole.

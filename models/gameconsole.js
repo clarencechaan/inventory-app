@@ -12,7 +12,7 @@ var ConsoleSchema = new Schema({
 
 // Virtual for console's URL
 ConsoleSchema.virtual("url").get(function () {
-  return "/shop/console/" + this._id;
+  return "/shop/gameconsole/" + this._id;
 });
 
 //Export model
