@@ -1,8 +1,32 @@
 var Accessory = require("../models/accessory");
+var GameConsole = require("../models/gameconsole");
+var async = require("async");
 
 // Display list of all Accessories.
 exports.accessory_list = function (req, res) {
   res.send("NOT IMPLEMENTED: Accessory list");
+};
+
+// Display list of all Games.
+exports.accessory_list = function (req, res, next) {
+  async.parallel(
+    {
+      accessory_list: function (cb) {
+        Accessory.find({}).sort({ name: 1 }).populate("gameconsole").exec(cb);
+      },
+      gameconsole_list: function (cb) {
+        GameConsole.find({}).sort({ name: 1 }).exec(cb);
+      },
+    },
+    function (err, results) {
+      res.render("item_list", {
+        title: "Accessories",
+        item_list: results.accessory_list,
+        gameconsole_list: results.gameconsole_list,
+        error: err,
+      });
+    }
+  );
 };
 
 // Display detail page for a specific Accessory.

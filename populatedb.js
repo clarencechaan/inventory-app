@@ -74,7 +74,7 @@ function genreCreate(name, cb) {
 }
 
 function gameCreate(
-  title,
+  name,
   gameconsole,
   description,
   genre,
@@ -84,7 +84,7 @@ function gameCreate(
   cb
 ) {
   gamedetail = {
-    title,
+    name,
     gameconsole,
     description,
     genre,
@@ -579,7 +579,7 @@ function createAccessories(cb) {
           gameconsoles[1],
           19.99,
           10,
-          "https://i.imgur.com/HzqlQE2.jpg",
+          "https://i.imgur.com/kpZNGK8.jpg",
           callback
         );
       },

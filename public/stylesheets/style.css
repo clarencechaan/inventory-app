@@ -195,6 +195,9 @@ a {
   cursor: pointer;
   font-family: "Lato", sans-serif;
   font-size: 14px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
 }
 
 .category-picker > button:first-child {
@@ -239,6 +242,8 @@ a {
   align-items: center;
   font-weight: 600;
   border-right: 1px solid rgb(226, 226, 226);
+  padding: 10px;
+  box-sizing: border-box;
 }
 
 .item:last-child .item-preview-content,
@@ -249,6 +254,10 @@ a {
 .item-preview-content .item-console {
   color: gray;
   font-weight: 400;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 100%;
 }
 
 .item-preview-content .item-info {
@@ -257,7 +266,7 @@ a {
   flex: 1;
   align-items: center;
   justify-content: center;
-  padding: 0 10px 0 10px;
+  width: 100%;
 }
 
 .item button.add-to-cart {
@@ -292,6 +301,7 @@ a {
 
 .item-preview img {
   height: 221px;
+  width: 100%;
   object-fit: contain;
   object-position: center;
 }
@@ -300,6 +310,11 @@ a {
   box-sizing: border-box;
   text-align: center;
   margin-bottom: 8px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
 }
 
 .item-preview .item-price {
@@ -440,7 +455,7 @@ a {
 }
 
 .category-picker .gameconsole-btn {
-  padding-right: 10px;
+  padding: 0 10px 0 0;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -449,14 +464,21 @@ a {
   width: 200px;
 }
 
-.category-picker .gameconsole-btn > img {
-  margin-left: auto;
+.category-picker .btn-text {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding: 0 25px 0 25px;
+}
+
+.category-picker .gameconsole-btn-window button:hover {
+  background-color: rgb(245, 245, 245);
 }
 
 .category-picker .drop-down {
   width: 100%;
   position: absolute;
-  display: flex;
+  display: none;
   flex-direction: column;
   z-index: 2;
 }
@@ -468,4 +490,14 @@ a {
 
 .category-picker .drop-down button:last-child {
   border-radius: 0 0 4px 4px;
+}
+
+.category-picker .non-interactive {
+  cursor: initial;
+  background-color: rgb(254, 76, 80);
+  color: white;
+}
+
+.category-picker .gameconsole-btn-window:hover .drop-down {
+  display: flex;
 }

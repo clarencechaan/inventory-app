@@ -28,16 +28,24 @@ exports.index = function (req, res) {
 
 // Display list of all Games.
 exports.game_list = function (req, res, next) {
-  Game.find({})
-    .sort({ title: 1 })
-    .populate("gameconsole")
-    .exec(function (err, list_games) {
-      if (err) {
-        return next(err);
-      }
-      //Successful, so render
-      res.render("item_list", { title: "Games", item_list: list_games });
-    });
+  async.parallel(
+    {
+      game_list: function (cb) {
+        Game.find({}).sort({ name: 1 }).populate("gameconsole").exec(cb);
+      },
+      gameconsole_list: function (cb) {
+        GameConsole.find({}).sort({ name: 1 }).exec(cb);
+      },
+    },
+    function (err, results) {
+      res.render("item_list", {
+        title: "Games",
+        item_list: results.game_list,
+        gameconsole_list: results.gameconsole_list,
+        error: err,
+      });
+    }
+  );
 };
 
 // Display detail page for a specific Game.
