@@ -23,6 +23,18 @@ exports.index = function (req, res) {
       new_gameconsoles: function (cb) {
         GameConsole.find({}).limit(3).sort({ date: -1 }).exec(cb);
       },
+      bs_games: function (cb) {
+        Game.find({}).limit(2).sort({ name: -1 }).exec(cb);
+      },
+      bs_accessories: function (cb) {
+        Accessory.find({}).limit(2).sort({ name: -1 }).exec(cb);
+      },
+      bs_gameconsoles: function (cb) {
+        GameConsole.find({}).limit(1).sort({ name: -1 }).exec(cb);
+      },
+      deal_item: function (cb) {
+        GameConsole.findById("62854d8a15a3ecf1d9b5523c", cb);
+      },
     },
     function (err, results) {
       const new_all = [
@@ -31,6 +43,11 @@ exports.index = function (req, res) {
         ...results.new_gameconsoles,
       ];
       new_all.sort((a, b) => (a.date > b.date ? -1 : 1));
+      const best_sellers = [
+        ...results.bs_games,
+        ...results.bs_accessories,
+        ...results.bs_gameconsoles,
+      ];
       res.render("index", {
         title: "Home",
         error: err,
@@ -38,6 +55,8 @@ exports.index = function (req, res) {
         new_accessories: results.new_accessories,
         new_gameconsoles: results.new_gameconsoles,
         new_all: new_all,
+        best_sellers: best_sellers,
+        deal_item: results.deal_item,
       });
     }
   );

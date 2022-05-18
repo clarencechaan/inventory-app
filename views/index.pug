@@ -39,7 +39,6 @@ block content
                         .item-console #{ item.gameconsole.name }
                       else if item.manufacturer
                         .item-console #{ item.manufacturer }
-                      //- .item-console #{ item.gameconsole.name }
                       .item-name #{ item.name }
                       .item-price $#{ item.price }
                 .item-window
@@ -49,75 +48,42 @@ block content
         .deal-content
           div
             h1 Deal Of The Week
+              br
+              .sub-text #{ deal_item.name } $#{ deal_item.price }
             .underline
             .timer
               .circle
-                .count 2
+                .count.day 2
                 .unit Day
               .circle
-                .count 23
+                .count.hour 23
                 .unit Hour
               .circle
-                .count 48
+                .count.min 48
                 .unit Min
               .circle
-                .count 8
+                .count.sec 8
                 .unit Sec
-            a(href="/shop/gameconsoles").shop-now-btn.black SHOP NOW
+            a(href=deal_item.url).shop-now-btn.black SHOP NOW
       .best-sellers
         h1 Best Sellers
         .underline
         .items-window
           .items
-            a(href="/shop/game/12345").item
-              .item-preview
-                .item-preview-content
-                  img(src="https://i.imgur.com/AMW1ox5.jpg")
-                  .item-info
-                    .item-console Xbox Series X
-                    .item-name Call of Duty: Black Ops Cold War 
-                    .item-price $89.99
-              .item-window
-                button.add-to-cart VIEW DETAILS
-            a(href="/shop/game/12345").item
-              .item-preview
-                .item-preview-content
-                  img(src="https://i.imgur.com/AMW1ox5.jpg")
-                  .item-info
-                    .item-console Xbox Series X
-                    .item-name Call of Duty: Black Ops Cold War 
-                    .item-price $89.99
-              .item-window
-                button.add-to-cart VIEW DETAILS
-            a(href="/shop/game/12345").item
-              .item-preview
-                .item-preview-content
-                  img(src="https://i.imgur.com/AMW1ox5.jpg")
-                  .item-info
-                    .item-console Xbox Series X
-                    .item-name Call of Duty: Black Ops Cold War 
-                    .item-price $89.99
-              .item-window
-                button.add-to-cart VIEW DETAILS
-            a(href="/shop/game/12345").item
-              .item-preview
-                .item-preview-content
-                  img(src="https://i.imgur.com/AMW1ox5.jpg")
-                  .item-info
-                    .item-console Xbox Series X
-                    .item-name Call of Duty: Black Ops Cold War 
-                    .item-price $89.99
-              .item-window
-                button.add-to-cart VIEW DETAILS
-            a(href="/shop/game/12345").item
-              .item-preview
-                .item-preview-content
-                  img(src="https://i.imgur.com/AMW1ox5.jpg")
-                  .item-info
-                    .item-console Xbox Series X
-                    .item-name Call of Duty: Black Ops Cold War 
-                    .item-price $89.99
-              .item-window
-                button.add-to-cart VIEW DETAILS
+            each item in best_sellers
+              a(href=item.url data-category=item.collection.collectionName).item
+                .item-preview
+                  .item-preview-content
+                    img(src=item.img_url)
+                    .item-info
+                      if item.gameconsole
+                        .item-console #{ item.gameconsole.name }
+                      else if item.manufacturer
+                        .item-console #{ item.manufacturer }
+                      .item-name #{ item.name }
+                      .item-price $#{ item.price }
+                .item-window
+                  button.add-to-cart VIEW DETAILS
+
           .hider
   script(src="/scripts/index.js")

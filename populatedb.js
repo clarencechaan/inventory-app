@@ -225,7 +225,7 @@ function createGameConsoles(cb) {
         gameConsoleCreate(
           "Nintendo Switch",
           "At home, Nintendo Switch rests in the Nintendo Switch Dock that connects the system to the TV and lets you play with family and friends in the comfort of your living room. By simply lifting Nintendo Switch from the dock, the system will instantly transition to portable mode, and the same great gaming experience that was being enjoyed at home now travels with you. The portability of Nintendo Switch is enhanced by its bright high-definition display. It brings the full home gaming system experience with you to the park, on an airplane, in a car, or to a friend's apartment.",
-          379.99,
+          299.99,
           39,
           "https://i.imgur.com/MG0mHxV.jpg",
           "Nintendo",
