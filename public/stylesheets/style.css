@@ -60,7 +60,7 @@ a {
 }
 
 .header-content > a:not(:first-child):hover {
-  color: red;
+  color: rgb(254, 76, 80);
 }
 
 .red {
@@ -264,10 +264,6 @@ a {
   border-right: 1px solid rgb(226, 226, 226);
   padding: 10px;
   box-sizing: border-box;
-}
-
-.item:last-child .item-preview-content {
-  border-right: none;
 }
 
 .item-preview-content .item-console {
