@@ -27,57 +27,24 @@ block content
           button GAMES
           button CONSOLES
           button ACCESSORIES
-        .items
-          a(href="/shop/game/12345").item
-            .item-preview
-              .item-preview-content
-                img(src="https://i.imgur.com/AMW1ox5.jpg")
-                .item-info
-                  .item-console Xbox Series X
-                  .item-name Call of Duty: Black Ops Cold War 
-                  .item-price $89.99
-            .item-window
-              button.add-to-cart VIEW DETAILS
-          a(href="/shop/game/12345").item
-            .item-preview
-              .item-preview-content
-                img(src="https://i.imgur.com/AMW1ox5.jpg")
-                .item-info
-                  .item-console Xbox Series X
-                  .item-name Call of Duty: Black Ops Cold War 
-                  .item-price $89.99
-            .item-window
-              button.add-to-cart VIEW DETAILS
-          a(href="/shop/game/12345").item
-            .item-preview
-              .item-preview-content
-                img(src="https://i.imgur.com/AMW1ox5.jpg")
-                .item-info
-                  .item-console Xbox Series X
-                  .item-name Call of Duty: Black Ops Cold War 
-                  .item-price $89.99
-            .item-window
-              button.add-to-cart VIEW DETAILS
-          a(href="/shop/game/12345").item
-            .item-preview
-              .item-preview-content
-                img(src="https://i.imgur.com/AMW1ox5.jpg")
-                .item-info
-                  .item-console Xbox Series X
-                  .item-name Call of Duty: Black Ops Cold War 
-                  .item-price $89.99
-            .item-window
-              button.add-to-cart VIEW DETAILS
-          a(href="/shop/game/12345").item
-            .item-preview
-              .item-preview-content
-                img(src="https://i.imgur.com/AMW1ox5.jpg")
-                .item-info
-                  .item-console Xbox Series X
-                  .item-name Call of Duty: Black Ops Cold War 
-                  .item-price $89.99
-            .item-window
-              button.add-to-cart VIEW DETAILS
+        .items-window            
+          .items
+            each item in new_all
+              a(href=item.url data-category=item.collection.collectionName).item
+                .item-preview
+                  .item-preview-content
+                    img(src=item.img_url)
+                    .item-info
+                      if item.gameconsole
+                        .item-console #{ item.gameconsole.name }
+                      else if item.manufacturer
+                        .item-console #{ item.manufacturer }
+                      //- .item-console #{ item.gameconsole.name }
+                      .item-name #{ item.name }
+                      .item-price $#{ item.price }
+                .item-window
+                  button.add-to-cart VIEW DETAILS
+          .hider
       .deal-of-the-week
         .deal-content
           div
@@ -100,55 +67,57 @@ block content
       .best-sellers
         h1 Best Sellers
         .underline
-        .items
-          a(href="/shop/game/12345").item
-            .item-preview
-              .item-preview-content
-                img(src="https://i.imgur.com/AMW1ox5.jpg")
-                .item-info
-                  .item-console Xbox Series X
-                  .item-name Call of Duty: Black Ops Cold War 
-                  .item-price $89.99
-            .item-window
-              button.add-to-cart VIEW DETAILS
-          a(href="/shop/game/12345").item
-            .item-preview
-              .item-preview-content
-                img(src="https://i.imgur.com/AMW1ox5.jpg")
-                .item-info
-                  .item-console Xbox Series X
-                  .item-name Call of Duty: Black Ops Cold War 
-                  .item-price $89.99
-            .item-window
-              button.add-to-cart VIEW DETAILS
-          a(href="/shop/game/12345").item
-            .item-preview
-              .item-preview-content
-                img(src="https://i.imgur.com/AMW1ox5.jpg")
-                .item-info
-                  .item-console Xbox Series X
-                  .item-name Call of Duty: Black Ops Cold War 
-                  .item-price $89.99
-            .item-window
-              button.add-to-cart VIEW DETAILS
-          a(href="/shop/game/12345").item
-            .item-preview
-              .item-preview-content
-                img(src="https://i.imgur.com/AMW1ox5.jpg")
-                .item-info
-                  .item-console Xbox Series X
-                  .item-name Call of Duty: Black Ops Cold War 
-                  .item-price $89.99
-            .item-window
-              button.add-to-cart VIEW DETAILS
-          a(href="/shop/game/12345").item
-            .item-preview
-              .item-preview-content
-                img(src="https://i.imgur.com/AMW1ox5.jpg")
-                .item-info
-                  .item-console Xbox Series X
-                  .item-name Call of Duty: Black Ops Cold War 
-                  .item-price $89.99
-            .item-window
-              button.add-to-cart VIEW DETAILS
-  
+        .items-window
+          .items
+            a(href="/shop/game/12345").item
+              .item-preview
+                .item-preview-content
+                  img(src="https://i.imgur.com/AMW1ox5.jpg")
+                  .item-info
+                    .item-console Xbox Series X
+                    .item-name Call of Duty: Black Ops Cold War 
+                    .item-price $89.99
+              .item-window
+                button.add-to-cart VIEW DETAILS
+            a(href="/shop/game/12345").item
+              .item-preview
+                .item-preview-content
+                  img(src="https://i.imgur.com/AMW1ox5.jpg")
+                  .item-info
+                    .item-console Xbox Series X
+                    .item-name Call of Duty: Black Ops Cold War 
+                    .item-price $89.99
+              .item-window
+                button.add-to-cart VIEW DETAILS
+            a(href="/shop/game/12345").item
+              .item-preview
+                .item-preview-content
+                  img(src="https://i.imgur.com/AMW1ox5.jpg")
+                  .item-info
+                    .item-console Xbox Series X
+                    .item-name Call of Duty: Black Ops Cold War 
+                    .item-price $89.99
+              .item-window
+                button.add-to-cart VIEW DETAILS
+            a(href="/shop/game/12345").item
+              .item-preview
+                .item-preview-content
+                  img(src="https://i.imgur.com/AMW1ox5.jpg")
+                  .item-info
+                    .item-console Xbox Series X
+                    .item-name Call of Duty: Black Ops Cold War 
+                    .item-price $89.99
+              .item-window
+                button.add-to-cart VIEW DETAILS
+            a(href="/shop/game/12345").item
+              .item-preview
+                .item-preview-content
+                  img(src="https://i.imgur.com/AMW1ox5.jpg")
+                  .item-info
+                    .item-console Xbox Series X
+                    .item-name Call of Duty: Black Ops Cold War 
+                    .item-price $89.99
+              .item-window
+                button.add-to-cart VIEW DETAILS
+          .hider
+  script(src="/scripts/index.js")

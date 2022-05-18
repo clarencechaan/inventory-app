@@ -12,20 +12,23 @@ block content
               .btn-text View All
               img(src="/images/caret-down.svg")
             .drop-down
+              button.view-all View All
               each gc in gameconsole_list
-                button #{ gc.name }
-      .items
-        each item in item_list
-          a(href=item.url).item
-            .item-preview
-              .item-preview-content
-                img(src=item.img_url)
-                .item-info
-                  .item-console #{ item.gameconsole.name }
-                  .item-name #{ item.name }
-                  .item-price $#{ item.price }
-            .item-window
-              button.add-to-cart VIEW DETAILS
-        else
-          li There are no items.
+                button.filter-cat #{ gc.name }
+      .items-window
+        .items
+          each item in item_list
+            a(href=item.url data-gameconsole=item.gameconsole.name).item
+              .item-preview
+                .item-preview-content
+                  img(src=item.img_url)
+                  .item-info
+                    .item-console #{ item.gameconsole.name }
+                    .item-name #{ item.name }
+                    .item-price $#{ item.price }
+              .item-window
+                button.add-to-cart VIEW DETAILS
+          else
+            li There are no items.
+        .hider
   script(src="/scripts/item_list.js")

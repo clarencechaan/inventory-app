@@ -6,25 +6,61 @@ var async = require("async");
 exports.index = function (req, res) {
   async.parallel(
     {
-      game_count: function (callback) {
-        Game.countDocuments({}, callback); // Pass an empty object as match condition to find all documents of this collection
+      new_games: function (cb) {
+        Game.find({})
+          .limit(3)
+          .populate("gameconsole")
+          .sort({ date: -1 })
+          .exec(cb);
       },
-      accessory_count: function (callback) {
-        Accessory.countDocuments({}, callback);
+      new_accessories: function (cb) {
+        Accessory.find({})
+          .limit(3)
+          .populate("gameconsole")
+          .sort({ date: -1 })
+          .exec(cb);
       },
-      gameconsole_count: function (callback) {
-        GameConsole.countDocuments({ status: "Available" }, callback);
+      new_gameconsoles: function (cb) {
+        GameConsole.find({}).limit(3).sort({ date: -1 }).exec(cb);
       },
     },
     function (err, results) {
+      const new_all = [
+        ...results.new_games,
+        ...results.new_accessories,
+        ...results.new_gameconsoles,
+      ];
+      new_all.sort((a, b) => (a.date > b.date ? -1 : 1));
       res.render("index", {
         title: "Home",
         error: err,
-        data: results,
+        new_games: results.new_games,
+        new_accessories: results.new_accessories,
+        new_gameconsoles: results.new_gameconsoles,
+        new_all: new_all,
       });
     }
   );
 };
+
+function getNewArrivals(cb) {
+  async.parallel(
+    {
+      new_games: function () {
+        Game.find({}).limit(5).exec(cb);
+      },
+      new_accessories: function () {
+        Accessory.find({}).limit(5).exec(cb);
+      },
+      new_gameconsoles: function () {
+        GameConsole.find({}).limit(5).exec(cb);
+      },
+    },
+    function (err, results) {
+      return results;
+    }
+  );
+}
 
 // Display list of all Games.
 exports.game_list = function (req, res, next) {

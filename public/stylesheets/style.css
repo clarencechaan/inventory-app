@@ -223,15 +223,22 @@ a {
   color: white;
 }
 
-.category-picker button.selected:hover {
-  background-color: rgb(255, 119, 122);
-}
-
 .items {
   display: flex;
   flex-wrap: wrap;
   margin-top: 60px;
-  width: 100%;
+  width: 1105px;
+}
+
+.items-window {
+  display: flex;
+}
+
+.hider {
+  background-color: white;
+  width: 1px;
+  margin-left: -1px;
+  z-index: 1;
 }
 
 .item {
@@ -254,8 +261,7 @@ a {
   box-sizing: border-box;
 }
 
-.item:last-child .item-preview-content,
-.item:nth-child(5n) .item-preview-content {
+.item:last-child .item-preview-content {
   border-right: none;
 }
 
@@ -500,13 +506,13 @@ a {
   border-radius: 0 0 4px 4px;
 }
 
+.category-picker .drop-down .view-all {
+  display: none;
+}
+
 .category-picker .non-interactive {
   cursor: initial;
   border-color: rgb(254, 76, 80);
   background-color: rgb(254, 76, 80);
   color: white;
-}
-
-.category-picker .gameconsole-btn-window:hover .drop-down {
-  display: flex;
 }

@@ -8,6 +8,8 @@ var ConsoleSchema = new Schema({
   price: { type: Number, required: true },
   num_in_stock: { type: Number, required: true },
   img_url: { type: String, required: true },
+  manufacturer: { type: String, required: true },
+  date: { type: Date, default: Date.now },
 });
 
 // Virtual for console's URL

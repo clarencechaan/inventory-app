@@ -112,6 +112,7 @@ function gameConsoleCreate(
   price,
   num_in_stock,
   img_url,
+  manufacturer,
   cb
 ) {
   var gameconsole = new GameConsole({
@@ -120,6 +121,7 @@ function gameConsoleCreate(
     price,
     num_in_stock,
     img_url,
+    manufacturer,
   });
 
   gameconsole.save(function (err) {
@@ -182,6 +184,7 @@ function createGameConsoles(cb) {
           599.99,
           46,
           "https://i.imgur.com/xcHGKeM.jpg",
+          "Microsoft",
           callback
         );
       },
@@ -192,6 +195,7 @@ function createGameConsoles(cb) {
           379.99,
           46,
           "https://i.imgur.com/134Gp0e.jpg",
+          "Microsoft",
           callback
         );
       },
@@ -202,6 +206,7 @@ function createGameConsoles(cb) {
           629.99,
           12,
           "https://i.imgur.com/NB6v9D8.jpg",
+          "Sony",
           callback
         );
       },
@@ -212,6 +217,7 @@ function createGameConsoles(cb) {
           379.99,
           42,
           "https://i.imgur.com/AtM9r28.jpg",
+          "Sony",
           callback
         );
       },
@@ -222,6 +228,7 @@ function createGameConsoles(cb) {
           379.99,
           39,
           "https://i.imgur.com/MG0mHxV.jpg",
+          "Nintendo",
           callback
         );
       },

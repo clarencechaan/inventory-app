@@ -5,17 +5,20 @@ block content
     .main-content
       h1= "Consoles"
       .underline
-      .items
-        each gc in gameconsole_list
-          a(href=gc.url).item
-            .item-preview
-              .item-preview-content
-                img(src=gc.img_url)
-                .item-info
-                  .item-name #{ gc.name }
-                  .item-price $#{ gc.price }
-            .item-window
-              button.add-to-cart VIEW DETAILS
-        else
-          li There are no items.
+      .items-window
+        .items
+          each gc in gameconsole_list
+            a(href=gc.url).item
+              .item-preview
+                .item-preview-content
+                  img(src=gc.img_url)
+                  .item-info
+                    .item-console #{ gc.manufacturer }
+                    .item-name #{ gc.name }
+                    .item-price $#{ gc.price }
+              .item-window
+                button.add-to-cart VIEW DETAILS
+          else
+            li There are no items.
+        .hider
   script(src="/scripts/item_list.js")
