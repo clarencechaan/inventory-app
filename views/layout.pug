@@ -60,6 +60,5 @@ html
           a(href="/shop/accessory/create") Accessory
         div(class= category === "game" || category === "gameconsole" || category === "accessory" ? "current-item-btns" : "current-item-btns disabled")
           span Current Item:
-          a(href= item ? item.url : "") View
           a(href= item ? item.url + "/update" : "") Update
           a(href= item ? item.url + "/delete" : "").delete-btn Delete

@@ -1,4 +1,5 @@
-.delete-info a {
+.delete-info a,
+.delete-info button {
   height: 45px;
   width: 150px;
   display: flex;
@@ -9,6 +10,12 @@
   border-radius: 6px;
   margin-top: 16px;
   box-sizing: border-box;
+}
+
+.delete-info button {
+  font-family: inherit;
+  border: none;
+  cursor: pointer;
 }
 
 .cancel-btn {

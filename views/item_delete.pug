@@ -11,5 +11,14 @@ block item-info
     else
       h4 Are you sure you want to delete this item?
       span
-        a(href="").confirm-delete-btn Delete
+        form(method="POST", action="")
+          .form-group
+            input#id.form-control(
+              type="hidden",
+              name="id",
+              required="true",
+              value=item._id
+            )
+          button.confirm-delete-btn(type="submit") Delete
         a(href= item.url).cancel-btn Cancel
+
