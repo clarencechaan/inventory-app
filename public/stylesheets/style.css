@@ -18,9 +18,19 @@ h1 .sub-text {
   font-size: 24px;
 }
 
+h2,
+h3,
+h4 {
+  font-family: "Raleway", sans-serif;
+}
+
 a {
   text-decoration: none;
   color: inherit;
+}
+
+.hidden {
+  display: none;
 }
 
 /* INDEX */
@@ -516,4 +526,88 @@ a {
   border-color: rgb(254, 76, 80);
   background-color: rgb(254, 76, 80);
   color: white;
+}
+
+/* ITEM_DETAIL */
+
+.item-detail {
+  margin-top: 64px;
+  margin-bottom: 16px;
+  width: 100%;
+  display: flex;
+}
+
+.item-detail .img-container {
+  width: 560px;
+  height: 560px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.img-container img {
+  flex: 1;
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.item-info h4,
+.item-info h3,
+.item-info h2 {
+  margin: 0;
+}
+
+.item-info h2 {
+  font-size: 36px;
+}
+
+.item-info h3.subtext {
+  color: gray;
+  font-size: 20px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgb(226, 226, 226);
+}
+
+.item-info {
+  max-width: 50%;
+}
+
+.item-info .item-description {
+  margin-top: 16px;
+  /* max-height: 140px; */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+}
+
+.item-info h4 {
+  font-size: 18px;
+  margin-top: 16px;
+}
+
+.item-info h2.price {
+  margin-top: 16px;
+}
+
+.item-info .fader {
+  background-image: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0),
+    rgb(255, 255, 255)
+  );
+  height: 75px;
+  margin-top: -75px;
+  z-index: 2;
+  position: relative;
+}
+
+.item-info .read-more {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  text-decoration: underline;
+  color: rgb(254, 76, 80);
+  margin-top: 12px;
 }

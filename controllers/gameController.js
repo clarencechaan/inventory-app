@@ -62,25 +62,6 @@ exports.index = function (req, res) {
   );
 };
 
-function getNewArrivals(cb) {
-  async.parallel(
-    {
-      new_games: function () {
-        Game.find({}).limit(5).exec(cb);
-      },
-      new_accessories: function () {
-        Accessory.find({}).limit(5).exec(cb);
-      },
-      new_gameconsoles: function () {
-        GameConsole.find({}).limit(5).exec(cb);
-      },
-    },
-    function (err, results) {
-      return results;
-    }
-  );
-}
-
 // Display list of all Games.
 exports.game_list = function (req, res, next) {
   async.parallel(
@@ -105,7 +86,16 @@ exports.game_list = function (req, res, next) {
 
 // Display detail page for a specific Game.
 exports.game_detail = function (req, res) {
-  res.send("NOT IMPLEMENTED: Game detail: " + req.params.id);
+  Game.findById(req.params.id)
+    .populate("gameconsole")
+    .populate("genre")
+    .exec(function (err, game) {
+      if (err) {
+        return next(err);
+      }
+      //Successful, so render
+      res.render("item_detail", { title: game.name, item: game });
+    });
 };
 
 // Display Game create form on GET.
