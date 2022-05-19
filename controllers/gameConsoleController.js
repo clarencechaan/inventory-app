@@ -18,7 +18,13 @@ exports.gameconsole_list = function (req, res) {
 
 // Display detail page for a specific GameConsole.
 exports.gameconsole_detail = function (req, res) {
-  res.send("NOT IMPLEMENTED: GameConsole detail: " + req.params.id);
+  GameConsole.findById(req.params.id).exec(function (err, gameconsole) {
+    if (err) {
+      return next(err);
+    }
+    //Successful, so render
+    res.render("item_detail", { title: gameconsole.name, item: gameconsole });
+  });
 };
 
 // Display GameConsole create form on GET.

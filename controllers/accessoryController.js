@@ -31,7 +31,15 @@ exports.accessory_list = function (req, res, next) {
 
 // Display detail page for a specific Accessory.
 exports.accessory_detail = function (req, res) {
-  res.send("NOT IMPLEMENTED: Accessory detail: " + req.params.id);
+  Accessory.findById(req.params.id)
+    .populate("gameconsole")
+    .exec(function (err, accessory) {
+      if (err) {
+        return next(err);
+      }
+      //Successful, so render
+      res.render("item_detail", { title: accessory.name, item: accessory });
+    });
 };
 
 // Display Accessory create form on GET.

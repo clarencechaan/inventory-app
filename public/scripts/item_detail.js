@@ -1,6 +1,10 @@
-const description = document.querySelector(".item-info .item-description");
-const readMoreBtn = document.querySelector(".item-info button.read-more");
-const fader = document.querySelector(".item-info .fader");
+const description = document.querySelector(
+  ".item-detail-info .item-description"
+);
+const readMoreBtn = document.querySelector(
+  ".item-detail-info button.read-more"
+);
+const fader = document.querySelector(".item-detail-info .fader");
 console.log(description.clientHeight);
 
 function truncateDescription() {

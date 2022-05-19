@@ -6,15 +6,19 @@ block content
       .item-detail
         .img-container
           img(src=item.img_url)
-        .item-info
+        .item-detail-info
           h2 #{ item.name }
-          h3.subtext for #{item.gameconsole.name}
+          if item.gameconsole
+            h3.subtext for #{item.gameconsole.name}
+          else if item.manufacturer
+            h3.subtext by #{item.manufacturer}
           h2.price $#{item.price}
           .item-description #{item.description}
           .fader.hidden
           button.read-more.hidden Read More
-          h4 Genre:
-          .item-genre #{item.genre.name}
+          if item.genre
+            h4 Genre:
+            .item-genre #{item.genre.name}
           h4 In Stock:
           .item-stock #{item.num_in_stock}
   script(src="/scripts/item_detail.js")

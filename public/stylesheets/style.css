@@ -535,44 +535,47 @@ a {
   margin-bottom: 16px;
   width: 100%;
   display: flex;
+  column-gap: 32px;
 }
 
 .item-detail .img-container {
   width: 560px;
   height: 560px;
+  max-width: 560px;
+  max-height: 560px;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
 .img-container img {
-  flex: 1;
+  object-fit: contain;
+  height: 100%;
   max-width: 100%;
-  max-height: 100%;
 }
 
-.item-info h4,
-.item-info h3,
-.item-info h2 {
+.item-detail-info h4,
+.item-detail-info h3,
+.item-detail-info h2 {
   margin: 0;
 }
 
-.item-info h2 {
+.item-detail-info h2 {
   font-size: 36px;
 }
 
-.item-info h3.subtext {
+.item-detail-info h3.subtext {
   color: gray;
   font-size: 20px;
   padding-bottom: 12px;
   border-bottom: 1px solid rgb(226, 226, 226);
 }
 
-.item-info {
+.item-detail-info {
   max-width: 50%;
 }
 
-.item-info .item-description {
+.item-detail-info .item-description {
   margin-top: 16px;
   /* max-height: 140px; */
   overflow: hidden;
@@ -581,16 +584,16 @@ a {
   -webkit-box-orient: vertical;
 }
 
-.item-info h4 {
+.item-detail-info h4 {
   font-size: 18px;
   margin-top: 16px;
 }
 
-.item-info h2.price {
+.item-detail-info h2.price {
   margin-top: 16px;
 }
 
-.item-info .fader {
+.item-detail-info .fader {
   background-image: linear-gradient(
     to bottom,
     rgba(255, 255, 255, 0),
@@ -602,7 +605,7 @@ a {
   position: relative;
 }
 
-.item-info .read-more {
+.item-detail-info .read-more {
   background-color: transparent;
   border: none;
   cursor: pointer;
