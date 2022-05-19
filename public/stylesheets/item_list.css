@@ -1,0 +1,59 @@
+/* ITEM_LIST */
+
+.category-picker button > img {
+  width: 30px;
+  height: 30px;
+}
+
+.category-picker .gameconsole-btn-window {
+  position: relative;
+}
+
+.category-picker .gameconsole-btn {
+  padding: 0 10px 0 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-right: 1px solid rgb(226, 226, 226);
+  border-radius: 0 4px 0 0;
+  width: 200px;
+}
+
+.category-picker .btn-text {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding: 0 25px 0 25px;
+}
+
+.category-picker button:not(.selected):not(.non-interactive):hover {
+  background-color: rgb(245, 245, 245);
+}
+
+.category-picker .drop-down {
+  width: 100%;
+  position: absolute;
+  display: none;
+  flex-direction: column;
+  z-index: 2;
+}
+
+.category-picker .drop-down button {
+  border-top: none;
+  border-right: 1px solid rgb(226, 226, 226);
+}
+
+.category-picker .drop-down button:last-child {
+  border-radius: 0 0 4px 4px;
+}
+
+.category-picker .drop-down .view-all {
+  display: none;
+}
+
+.category-picker .non-interactive {
+  cursor: initial;
+  border-color: rgb(254, 76, 80);
+  background-color: rgb(254, 76, 80);
+  color: white;
+}

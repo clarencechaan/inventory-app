@@ -1,7 +1,10 @@
 doctype html
 html
   head
-    link(rel='stylesheet', href='/stylesheets/style.css')
+    link(rel='stylesheet', href='/stylesheets/index.css')
+    link(rel='stylesheet', href='/stylesheets/item_list.css')
+    link(rel='stylesheet', href='/stylesheets/item_detail.css')
+    link(rel='stylesheet', href='/stylesheets/item_delete.css')
     link(rel="preconnect" href="https://fonts.googleapis.com")
     link(rel="preconnect" href="https://fonts.gstatic.com" crossorigin)
     link(href="https://fonts.googleapis.com/css2?family=Anton&family=Lato:wght@400;600;700&family=Open+Sans:wght@300;400;600;700&family=Raleway&display=swap" rel="stylesheet")
@@ -57,5 +60,6 @@ html
           a(href="/shop/accessory/create") Accessory
         div(class= category === "game" || category === "gameconsole" || category === "accessory" ? "current-item-btns" : "current-item-btns disabled")
           span Current Item:
+          a(href= item ? item.url : "") View
           a(href= item ? item.url + "/update" : "") Update
           a(href= item ? item.url + "/delete" : "").delete-btn Delete

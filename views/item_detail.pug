@@ -13,16 +13,17 @@ block content
               a(href=item.gameconsole.url) #{item.gameconsole.name}
           else if item.manufacturer
             h3.subtext by #{item.manufacturer}
-          h2.price $#{item.price}
-          .item-description #{item.description}
-          .fader.hidden
-          button.read-more.hidden Read More
-          if item.genre
-            h4 Genre:
-            .item-genre #{item.genre.name}
-          h4 In Stock:
-          .item-stock #{item.num_in_stock}
-      if category === "gameconsole"
+          block item-info
+            h2.price $#{item.price}
+            .item-description #{item.description}
+            .fader.hidden
+            button.read-more.hidden Read More
+            if item.genre
+              h4 Genre:
+              .item-genre #{item.genre.name}
+            h4 In Stock:
+            .item-stock #{item.num_in_stock}
+      if category === "gameconsole" && games_list.length && accessories_list.length
         h2 Games and Accessories for #{item.name}
         .small-item-previews
           each game in games_list

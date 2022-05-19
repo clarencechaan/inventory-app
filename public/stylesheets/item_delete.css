@@ -1,0 +1,39 @@
+.delete-info a {
+  height: 45px;
+  width: 150px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+  font-weight: 300;
+  border-radius: 6px;
+  margin-top: 16px;
+  box-sizing: border-box;
+}
+
+.cancel-btn {
+  border: 1px solid black;
+}
+
+.cancel-btn:hover {
+  background-color: rgb(245, 245, 245);
+}
+
+.confirm-delete-btn {
+  background-color: rgb(254, 76, 80);
+  color: white;
+}
+
+.confirm-delete-btn:hover {
+  background-color: rgb(255, 119, 122);
+}
+
+.delete-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.delete-info span {
+  display: flex;
+  column-gap: 16px;
+}

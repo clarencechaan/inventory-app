@@ -43,7 +43,6 @@ exports.accessory_detail = function (req, res) {
         title: accessory.name,
         item: accessory,
         category: "accessory",
-        itemID: req.params.id,
       });
     });
 };
@@ -60,7 +59,19 @@ exports.accessory_create_post = function (req, res) {
 
 // Display Accessory delete form on GET.
 exports.accessory_delete_get = function (req, res) {
-  res.send("NOT IMPLEMENTED: Accessory delete GET");
+  Accessory.findById(req.params.id)
+    .populate("gameconsole")
+    .exec(function (err, accessory) {
+      if (err) {
+        return next(err);
+      }
+      //Successful, so render
+      res.render("item_delete", {
+        title: accessory.name,
+        item: accessory,
+        category: "accessory",
+      });
+    });
 };
 
 // Handle Accessory delete on POST.

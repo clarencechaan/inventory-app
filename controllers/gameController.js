@@ -99,7 +99,6 @@ exports.game_detail = function (req, res) {
         title: game.name,
         item: game,
         category: "game",
-        itemID: req.params.id,
       });
     });
 };
@@ -116,7 +115,20 @@ exports.game_create_post = function (req, res) {
 
 // Display Game delete form on GET.
 exports.game_delete_get = function (req, res) {
-  res.send("NOT IMPLEMENTED: Game delete GET");
+  Game.findById(req.params.id)
+    .populate("gameconsole")
+    .populate("genre")
+    .exec(function (err, game) {
+      if (err) {
+        return next(err);
+      }
+      //Successful, so render
+      res.render("item_delete", {
+        title: game.name,
+        item: game,
+        category: "game",
+      });
+    });
 };
 
 // Handle Game delete on POST.
