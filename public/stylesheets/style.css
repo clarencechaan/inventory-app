@@ -614,3 +614,18 @@ a {
   color: rgb(254, 76, 80);
   margin-top: 12px;
 }
+
+.small-item-previews {
+  display: flex;
+  column-gap: 12px;
+  flex-wrap: wrap;
+  max-width: 1120px;
+  justify-content: center;
+  height: 140px;
+  overflow: hidden;
+}
+
+.small-item-prev img {
+  height: 140px;
+  object-fit: contain;
+}

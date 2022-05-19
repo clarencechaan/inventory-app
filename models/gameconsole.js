@@ -2,7 +2,7 @@ var mongoose = require("mongoose");
 
 var Schema = mongoose.Schema;
 
-var ConsoleSchema = new Schema({
+var GameConsoleSchema = new Schema({
   name: { type: String, required: true },
   description: { type: String, required: true },
   price: { type: Number, required: true },
@@ -12,10 +12,15 @@ var ConsoleSchema = new Schema({
   date: { type: Date, default: Date.now },
 });
 
-// Virtual for console's URL
-ConsoleSchema.virtual("url").get(function () {
+// Virtual for game console's URL
+GameConsoleSchema.virtual("url").get(function () {
   return "/shop/gameconsole/" + this._id;
 });
 
+// Virtual for game console's category
+GameConsoleSchema.virtual("category").get(function () {
+  return "gameconsoles";
+});
+
 //Export model
-module.exports = mongoose.model("GameConsole", ConsoleSchema);
+module.exports = mongoose.model("GameConsole", GameConsoleSchema);

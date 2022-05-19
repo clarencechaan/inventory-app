@@ -21,4 +21,15 @@ block content
             .item-genre #{item.genre.name}
           h4 In Stock:
           .item-stock #{item.num_in_stock}
+    if item.category === "gameconsoles"
+      h2 Games and Accessories for #{item.name}
+      .small-item-previews
+        each game in games_list
+          .small-item-prev
+            a(href=game.url)
+              img(src=game.img_url)
+        each accessory in accessories_list
+          .small-item-prev
+            a(href=accessory.url)
+              img(src=accessory.img_url)
   script(src="/scripts/item_detail.js")

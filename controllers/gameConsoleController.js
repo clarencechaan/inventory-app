@@ -1,4 +1,7 @@
 var GameConsole = require("../models/gameconsole");
+var Game = require("../models/game");
+var Accessory = require("../models/accessory");
+var async = require("async");
 
 // Display list of all GameConsoles.
 exports.gameconsole_list = function (req, res) {
@@ -18,13 +21,28 @@ exports.gameconsole_list = function (req, res) {
 
 // Display detail page for a specific GameConsole.
 exports.gameconsole_detail = function (req, res) {
-  GameConsole.findById(req.params.id).exec(function (err, gameconsole) {
-    if (err) {
-      return next(err);
+  async.parallel(
+    {
+      gameconsole: function (cb) {
+        GameConsole.findById(req.params.id).exec(cb);
+      },
+      games_list: function (cb) {
+        Game.find({ gameconsole: req.params.id }).limit(5).exec(cb);
+      },
+      accessories_list: function (cb) {
+        Accessory.find({ gameconsole: req.params.id }).limit(5).exec(cb);
+      },
+    },
+    function (err, results) {
+      res.render("item_detail", {
+        title: results.gameconsole.name,
+        item: results.gameconsole,
+        games_list: results.games_list,
+        accessories_list: results.accessories_list,
+        error: err,
+      });
     }
-    //Successful, so render
-    res.render("item_detail", { title: gameconsole.name, item: gameconsole });
-  });
+  );
 };
 
 // Display GameConsole create form on GET.
