@@ -12,9 +12,10 @@ exports.gameconsole_list = function (req, res) {
         return next(err);
       }
       //Successful, so render
-      res.render("gameconsole_list", {
+      res.render("item_list", {
         title: "Consoles",
-        gameconsole_list: gameconsole_list,
+        item_list: gameconsole_list,
+        category: "gameconsoles",
       });
     });
 };
@@ -39,6 +40,8 @@ exports.gameconsole_detail = function (req, res) {
         item: results.gameconsole,
         games_list: results.games_list,
         accessories_list: results.accessories_list,
+        category: "gameconsole",
+        itemID: req.params.id,
         error: err,
       });
     }

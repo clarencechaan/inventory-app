@@ -5,25 +5,26 @@ block content
     .main-content
       h1= title
       .underline
-      .category-picker
-          button.non-interactive FILTER:
-          .gameconsole-btn-window
-            button.gameconsole-btn
-              .btn-text View All
-              img(src="/images/caret-down.svg")
-            .drop-down
-              button.view-all View All
-              each gc in gameconsole_list
-                button.filter-cat #{ gc.name }
+      if category === "games" || category === "accessories"
+        .category-picker
+            button.non-interactive FILTER:
+            .gameconsole-btn-window
+              button.gameconsole-btn
+                .btn-text View All
+                img(src="/images/caret-down.svg")
+              .drop-down
+                button.view-all View All
+                each gc in gameconsole_list
+                  button.filter-cat #{ gc.name }
       .items-window
         .items
           each item in item_list
-            a(href=item.url data-gameconsole=item.gameconsole.name).item
+            a(href=item.url data-gameconsole=item.gameconsole ? item.gameconsole.name : "").item
               .item-preview
                 .item-preview-content
                   img(src=item.img_url)
                   .item-info
-                    .item-console #{ item.gameconsole.name }
+                    .item-console #{ category === "gameconsoles" ? item.manufacturer : item.gameconsole.name}
                     .item-name #{ item.name }
                     .item-price $#{ item.price }
               .item-window

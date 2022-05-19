@@ -577,11 +577,7 @@ a {
 
 .item-detail-info .item-description {
   margin-top: 16px;
-  /* max-height: 140px; */
   overflow: hidden;
-  text-overflow: ellipsis;
-  -webkit-line-clamp: 4;
-  -webkit-box-orient: vertical;
 }
 
 .item-detail-info h4 {
@@ -619,7 +615,7 @@ a {
   display: flex;
   column-gap: 12px;
   flex-wrap: wrap;
-  max-width: 1120px;
+  max-width: 100%;
   justify-content: center;
   height: 140px;
   overflow: hidden;
@@ -628,4 +624,88 @@ a {
 .small-item-prev img {
   height: 140px;
   object-fit: contain;
+}
+
+/* ADMIN WINDOW */
+
+.admin-window {
+  position: fixed;
+  width: 340px;
+  right: 0;
+  top: 20%;
+  display: flex;
+  border-radius: 8px 0 0 8px;
+  transform: translateX(296px);
+  transition: 0.5s;
+  overflow: hidden;
+  color: white;
+  z-index: 1;
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(57, 57, 89, 0.92);
+}
+
+.admin-window:hover {
+  transform: translateX(1px);
+}
+
+.admin-window .label {
+  min-width: 45px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  writing-mode: vertical-lr;
+  background-color: rgba(14, 14, 33, 0.92);
+}
+
+.admin-window .label span {
+  transform: rotate(180deg);
+}
+
+.admin-window-content {
+  display: flex;
+  flex: 1;
+  font-size: 16px;
+  text-align: center;
+  padding: 20px;
+  background-color: rgba(28, 28, 51, 0.92);
+  font-weight: 300;
+  column-gap: 20px;
+}
+
+.admin-window-content a {
+  padding: 4px 10px 4px 10px;
+  border-radius: 4px;
+  border: 1px solid white;
+  transition: 0.3s;
+}
+
+.admin-window-content > div:not(.disabled) a:not(.delete-btn):hover {
+  background-color: rgba(77, 77, 108, 0.92);
+}
+
+.admin-window-content > div {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.admin-window-content > div > *:not(:last-child) {
+  margin-bottom: 8px;
+}
+
+.admin-window-content .delete-btn {
+  background-color: rgb(254, 76, 80);
+  border-color: rgb(254, 76, 80);
+}
+
+.admin-window-content > div:not(.disabled) .delete-btn:hover {
+  background-color: rgb(255, 119, 122);
+}
+
+.admin-window-content .current-item-btns.disabled {
+  opacity: 0.4;
+}
+
+.admin-window-content .current-item-btns.disabled > a {
+  pointer-events: none;
 }

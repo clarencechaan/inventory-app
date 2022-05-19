@@ -78,6 +78,7 @@ exports.game_list = function (req, res, next) {
         title: "Games",
         item_list: results.game_list,
         gameconsole_list: results.gameconsole_list,
+        category: "games",
         error: err,
       });
     }
@@ -94,7 +95,12 @@ exports.game_detail = function (req, res) {
         return next(err);
       }
       //Successful, so render
-      res.render("item_detail", { title: game.name, item: game });
+      res.render("item_detail", {
+        title: game.name,
+        item: game,
+        category: "game",
+        itemID: req.params.id,
+      });
     });
 };
 

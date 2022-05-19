@@ -23,6 +23,7 @@ exports.accessory_list = function (req, res, next) {
         title: "Accessories",
         item_list: results.accessory_list,
         gameconsole_list: results.gameconsole_list,
+        category: "accessories",
         error: err,
       });
     }
@@ -38,7 +39,12 @@ exports.accessory_detail = function (req, res) {
         return next(err);
       }
       //Successful, so render
-      res.render("item_detail", { title: accessory.name, item: accessory });
+      res.render("item_detail", {
+        title: accessory.name,
+        item: accessory,
+        category: "accessory",
+        itemID: req.params.id,
+      });
     });
 };
 

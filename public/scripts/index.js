@@ -50,7 +50,8 @@ function setInitialDurationObj() {
 }
 
 function tickTimer() {
-  const duration = durationObj.totalDuration - 1;
+  const duration =
+    durationObj.totalDuration > 0 ? durationObj.totalDuration - 1 : 0;
   setDurationObj(duration);
 }
 

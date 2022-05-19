@@ -4,7 +4,7 @@ html
     link(rel='stylesheet', href='/stylesheets/style.css')
     link(rel="preconnect" href="https://fonts.googleapis.com")
     link(rel="preconnect" href="https://fonts.gstatic.com" crossorigin)
-    link(href="https://fonts.googleapis.com/css2?family=Anton&family=Lato:wght@400;600;700&family=Open+Sans:wght@400;600;700&family=Raleway&display=swap" rel="stylesheet")
+    link(href="https://fonts.googleapis.com/css2?family=Anton&family=Lato:wght@400;600;700&family=Open+Sans:wght@300;400;600;700&family=Raleway&display=swap" rel="stylesheet")
     script(src="/scripts/script.js")
     title= "GameGo | " + title
   body
@@ -46,3 +46,16 @@ html
       div 
         | View the code at this project's 
         a(href="https://github.com/clarencechaan/inventory-app") GitHub repo.
+    .admin-window
+      .label 
+        span ADMIN ACTIONS
+      .admin-window-content
+        div
+          span Add New:
+          a(href="/shop/game/create") Game
+          a(href="/shop/gameconsole/create") Console
+          a(href="/shop/accessory/create") Accessory
+        div(class= category === "game" || category === "gameconsole" || category === "accessory" ? "current-item-btns" : "current-item-btns disabled")
+          span Current Item:
+          a(href= item ? item.url + "/update" : "") Update
+          a(href= item ? item.url + "/delete" : "").delete-btn Delete
