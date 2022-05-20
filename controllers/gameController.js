@@ -133,7 +133,13 @@ exports.game_delete_get = function (req, res) {
 
 // Handle Game delete on POST.
 exports.game_delete_post = function (req, res) {
-  res.send("NOT IMPLEMENTED: Game delete POST");
+  Game.findByIdAndRemove(req.body.id, function deleteGame(err) {
+    if (err) {
+      return next(err);
+    }
+    // Success - go to game list
+    res.redirect("/shop/games");
+  });
 };
 
 // Display Game update form on GET.

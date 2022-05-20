@@ -86,7 +86,49 @@ exports.gameconsole_delete_get = function (req, res) {
 
 // Handle GameConsole delete on POST.
 exports.gameconsole_delete_post = function (req, res) {
-  res.send("NOT IMPLEMENTED: GameConsole delete POST");
+  async.parallel(
+    {
+      gameconsole: function (cb) {
+        GameConsole.findById(req.params.id).exec(cb);
+      },
+      games_list: function (cb) {
+        Game.find({ gameconsole: req.params.id }).limit(5).exec(cb);
+      },
+      accessories_list: function (cb) {
+        Accessory.find({ gameconsole: req.params.id }).limit(5).exec(cb);
+      },
+    },
+    function (err, results) {
+      if (err) {
+        return next(err);
+      }
+      // Success
+      if (results.games_list.length > 0 || results.accessories_list.length) {
+        // GameConsole has games or accessories. Render in same way as for GET route.
+        res.render("item_delete", {
+          title: results.gameconsole.name,
+          item: results.gameconsole,
+          games_list: results.games_list,
+          accessories_list: results.accessories_list,
+          category: "gameconsole",
+          error: err,
+        });
+        return;
+      } else {
+        // GameConsole has no games or accessories. Delete object and redirect to the list of game consoles.
+        GameConsole.findByIdAndRemove(
+          req.body.id,
+          function deleteGameConsole(err) {
+            if (err) {
+              return next(err);
+            }
+            // Success - go to game console list
+            res.redirect("/shop/gameconsoles");
+          }
+        );
+      }
+    }
+  );
 };
 
 // Display GameConsole update form on GET.

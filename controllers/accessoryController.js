@@ -76,7 +76,13 @@ exports.accessory_delete_get = function (req, res) {
 
 // Handle Accessory delete on POST.
 exports.accessory_delete_post = function (req, res) {
-  res.send("NOT IMPLEMENTED: Accessory delete POST");
+  Accessory.findByIdAndRemove(req.body.id, function deleteAccessory(err) {
+    if (err) {
+      return next(err);
+    }
+    // Success - go to accessory list
+    res.redirect("/shop/accessories");
+  });
 };
 
 // Display Accessory update form on GET.
