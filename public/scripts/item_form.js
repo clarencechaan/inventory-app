@@ -30,6 +30,7 @@ async function handleImagePicked(e) {
   const span = document.querySelector(".img-container span");
   span.innerText = "Uploading...";
   const imgElem = document.querySelector(".img-container img");
+  imgElem.src = "";
   imgElem.src = await uploadImage(e.target.files[0]);
   const imgURLinput = document.querySelector("#img-url");
   imgURLinput.value = imgElem.src;
@@ -44,7 +45,6 @@ itemImgPicker.addEventListener("change", (e) => {
 
 // prevent enter key from submitting form
 function checkEnter(event) {
-  console.log(event.keyCode);
   if (event.keyCode === 13) {
     event.preventDefault();
   }

@@ -8,6 +8,7 @@ block content
       .item-detail
         label(for="item-img").img-container.bordered
           if item 
+            span
             img(src= item.img_url)
           else
             span Upload an image (PNG/JPG)

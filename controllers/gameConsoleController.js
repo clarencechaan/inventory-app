@@ -220,6 +220,72 @@ exports.gameconsole_update_get = function (req, res, next) {
 };
 
 // Handle GameConsole update on POST.
-exports.gameconsole_update_post = function (req, res) {
-  res.send("NOT IMPLEMENTED: GameConsole update POST");
-};
+exports.gameconsole_update_post = [
+  // Validate and sanitize fields.
+  body("name", "Name must not be empty.")
+    .trim()
+    .isLength({ min: 1, max: 72 })
+    .escape(),
+  body("manufacturer", "Manufacturer must not be empty.")
+    .trim()
+    .isLength({ min: 1, max: 72 })
+    .escape(),
+  body("price", "Price must be a number between 1 and 10000.").isNumeric({
+    min: 1,
+    max: 10000,
+  }),
+  body("description", "Description must not be empty.")
+    .trim()
+    .isLength({ min: 1, max: 1500 })
+    .escape(),
+  body(
+    "num_in_stock",
+    "Number in stock must be a number between 0 and 10000."
+  ).isNumeric({
+    min: 0,
+    max: 10000,
+  }),
+  body("img_url", "Image URL must not be empty.").isURL(),
+  // Process request after validation and sanitization.
+  (req, res, next) => {
+    // Extract the validation errors from a request.
+    const errors = validationResult(req);
+
+    // Create a GameConsole object with escaped and trimmed data.
+    var gameconsole = new GameConsole({
+      name: req.body.name,
+      manufacturer: req.body.manufacturer,
+      price: req.body.price,
+      description: req.body.description,
+      num_in_stock: req.body.num_in_stock,
+      img_url: req.body.img_url,
+      _id: req.params.id, //This is required, or a new ID will be assigned!
+    });
+
+    if (!errors.isEmpty()) {
+      // There are errors. Render form again with sanitized values/error messages.
+
+      res.render("item_form", {
+        title: "Update Console",
+        item: gameconsole,
+        category: "gameconsole",
+        errors: errors.array(),
+      });
+      return;
+    } else {
+      // Data from form is valid. Update the record.
+      GameConsole.findByIdAndUpdate(
+        req.params.id,
+        gameconsole,
+        {},
+        function (err, thegameconsole) {
+          if (err) {
+            return next(err);
+          }
+          // Successful - redirect to gameconsole detail page.
+          res.redirect(thegameconsole.url);
+        }
+      );
+    }
+  },
+];
