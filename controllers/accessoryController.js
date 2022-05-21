@@ -49,7 +49,17 @@ exports.accessory_detail = function (req, res) {
 
 // Display Accessory create form on GET.
 exports.accessory_create_get = function (req, res) {
-  res.send("NOT IMPLEMENTED: Accessory create GET");
+  // Get all gameconsoles, which we can use for adding to our accessory.
+  GameConsole.find({}, (err, gameconsoles) => {
+    if (err) {
+      return next(err);
+    }
+    res.render("item_form", {
+      title: "Create Accessory",
+      gameconsoles: gameconsoles,
+      category: "accessory",
+    });
+  });
 };
 
 // Handle Accessory create on POST.

@@ -51,6 +51,7 @@ input[type="number"] {
 .img-container.bordered {
   border: 1px solid gray;
   cursor: pointer;
+  position: relative;
 }
 
 .img-container.bordered span {
@@ -93,4 +94,12 @@ button.submit-btn:hover {
 .submit-cancel-btns {
   display: flex;
   column-gap: 16px;
+}
+
+h1.form-title {
+  margin-bottom: 0;
+}
+
+form .item-detail {
+  margin-top: 12px;
 }

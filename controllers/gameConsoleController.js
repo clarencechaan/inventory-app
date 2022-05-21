@@ -49,7 +49,10 @@ exports.gameconsole_detail = function (req, res) {
 
 // Display GameConsole create form on GET.
 exports.gameconsole_create_get = function (req, res) {
-  res.send("NOT IMPLEMENTED: GameConsole create GET");
+  res.render("item_form", {
+    title: "Create Console",
+    category: "gameconsole",
+  });
 };
 
 // Handle GameConsole create on POST.

@@ -4,15 +4,21 @@ block content
   form(method="POST", action="")
     .main
     .main-content
+      h1 #{title}
       .item-detail
         label(for="item-img").img-container.bordered
           span Upload an image (PNG/JPG)
           img(src="")
+          input#img-url(
+              type="hidden",
+              name="id",
+              required="true"
+            )          
           input(type="file",
             id="item-img",
             className="hidden",
             accept="image/png, image/jpeg",
-            max-file-size="10485760"
+            max-file-size="10485760",
             required="true"
             )
         .item-detail-info
@@ -66,5 +72,10 @@ block content
               input(type="number" step="1" min="0" max="10000" placeholder="0" required="true")
             .submit-cancel-btns
               button.submit-btn(type="submit") Submit
-              a(href= "javascript:history.back()").cancel-btn Cancel
+              if category === "game"
+                a(href="/shop/games").cancel-btn Cancel
+              if category === "gameconsole"
+                a(href="/shop/gameconsoles").cancel-btn Cancel
+              if category === "accessory"
+                a(href="/shop/accessories").cancel-btn Cancel
   script(src="/scripts/item_form.js")
