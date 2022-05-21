@@ -30,8 +30,3 @@ if (description.clientHeight > 140) {
 }
 
 readMoreBtn.addEventListener("click", toggleReadMore);
-
-// enable admin action buttons
-const actionBtns = document.querySelector("current-item-btns");
-console.log(actionBtns);
-actionBtns.classList.remove("disabled");

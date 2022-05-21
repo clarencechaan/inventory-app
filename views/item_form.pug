@@ -3,87 +3,87 @@ extends layout
 block content
   form(method="POST", action="")
     .main
-    .main-content
-      h1 #{title}
-      .item-detail
-        label(for="item-img").img-container.bordered
-          if item && item.img_url
-            span
-            img(src= item.img_url)
-          else
-            span Upload an image (PNG/JPG)
-            img(src="")
-          input#img-url(
-              type="hidden",
-              name="img_url",
-              required=true
-              value= item ? item.img_url : null
-            )          
-          input(type="file",
-            id="item-img",
-            className="hidden",
-            accept="image/png, image/jpeg",
-            max-file-size="10485760",
-            required= item && item.img_url ? false : true,
-            )
-        .item-detail-info
-          h2
-            if category === "game"
-              input(type="text" placeholder="Title" required="true" maxlength="72" name="title" value= item ? item.name : "")
-            else if category === "gameconsole"
-              input(type="text" placeholder="Name" required="true" maxlength="44" name="name" value= item ? item.name : "")
-            else if category === "accessory"
-              input(type="text" placeholder="Name" required="true" maxlength="72" name="name" value= item ? item.name : "")
-            if category === "game" || category === "accessory"
-              h3.subtext for 
-                a(href="") 
-                select#gameconsole.form-control(
-                  type="select",
-                  placeholder="Select Console",
-                  name="gameconsole",
-                  required="true"
-                )
-                  each gameconsole in gameconsoles
-                    option(
-                      value=gameconsole._id,
-                      selected= item && item.gameconsole._id.toString() === gameconsole._id.toString(),
-                    ) #{ gameconsole.name }
-            else if category === "gameconsole"
-              h3.subtext by 
-                input(name="manufacturer" type="text" placeholder="Manufacturer" required="true" value= item ? item.manufacturer : "")
-          block item-info
-            h2.price $
-              input(name="price" type="number" min="1" max="10000" placeholder="0.00" step="0.01" required="true" value= item ? Number.parseFloat(item.price).toFixed(2) : "")
-            .item-description 
-              textarea(name="description", placeholder="Description" required="true" maxlength="1500")
-                | #{ item ? item.description : "" }
-            .fader.hidden
-            button.read-more.hidden Read More
-            if category === "game"
-              h4 Genre:
-              .item-genre 
-                select#genre.form-control(
-                  name="genre",
-                  type="select",
-                  placeholder="Select Genre",
-                  required="true"
-                )
-                  each genre in genres
-                    option(
-                      value=genre._id,
-                      selected= item && item.genre._id.toString() === genre._id.toString(),
-                    ) #{ genre.name }
-            h4 In Stock:
-            .item-stock 
-              input(name="num_in_stock" type="number" step="1" min="0" max="10000" placeholder="0" required="true" value= item ? item.num_in_stock : "")
-            .submit-cancel-btns
-              button.submit-btn(type="submit") Submit
+      .main-content
+        h1 #{title}
+        .item-detail
+          label(for="item-img").img-container.bordered
+            if item && item.img_url
+              span
+              img(src= item.img_url)
+            else
+              span Upload an image (PNG/JPG)
+              img(src="")
+            input#img-url(
+                type="hidden",
+                name="img_url",
+                required=true
+                value= item ? item.img_url : null
+              )          
+            input(type="file",
+              id="item-img",
+              className="hidden",
+              accept="image/png, image/jpeg",
+              max-file-size="10485760",
+              required= item && item.img_url ? false : true,
+              )
+          .item-detail-info
+            h2
               if category === "game"
-                a(href= item ? item.url : "/shop/games").cancel-btn Cancel
-              if category === "gameconsole"
-                a(href= item ? item.url : "/shop/gameconsoles").cancel-btn Cancel
-              if category === "accessory"
-                a(href= item ? item.url : "/shop/accessories").cancel-btn Cancel
+                input(type="text" placeholder="Title" required="true" maxlength="72" name="title" value= item ? item.name : "")
+              else if category === "gameconsole"
+                input(type="text" placeholder="Name" required="true" maxlength="44" name="name" value= item ? item.name : "")
+              else if category === "accessory"
+                input(type="text" placeholder="Name" required="true" maxlength="72" name="name" value= item ? item.name : "")
+              if category === "game" || category === "accessory"
+                h3.subtext for 
+                  a(href="") 
+                  select#gameconsole.form-control(
+                    type="select",
+                    placeholder="Select Console",
+                    name="gameconsole",
+                    required="true"
+                  )
+                    each gameconsole in gameconsoles
+                      option(
+                        value=gameconsole._id,
+                        selected= item && item.gameconsole._id.toString() === gameconsole._id.toString(),
+                      ) #{ gameconsole.name }
+              else if category === "gameconsole"
+                h3.subtext by 
+                  input(name="manufacturer" type="text" placeholder="Manufacturer" required="true" value= item ? item.manufacturer : "")
+            block item-info
+              h2.price $
+                input(name="price" type="number" min="1" max="10000" placeholder="0.00" step="0.01" required="true" value= item ? Number.parseFloat(item.price).toFixed(2) : "")
+              .item-description 
+                textarea(name="description", placeholder="Description" required="true" maxlength="1500")
+                  | #{ item ? item.description : "" }
+              .fader.hidden
+              button.read-more.hidden Read More
+              if category === "game"
+                h4 Genre:
+                .item-genre 
+                  select#genre.form-control(
+                    name="genre",
+                    type="select",
+                    placeholder="Select Genre",
+                    required="true"
+                  )
+                    each genre in genres
+                      option(
+                        value=genre._id,
+                        selected= item && item.genre._id.toString() === genre._id.toString(),
+                      ) #{ genre.name }
+              h4 In Stock:
+              .item-stock 
+                input(name="num_in_stock" type="number" step="1" min="0" max="10000" placeholder="0" required="true" value= item ? item.num_in_stock : "")
+              .submit-cancel-btns
+                button.submit-btn(type="submit") Submit
+                if category === "game"
+                  a(href= item ? item.url : "/shop/games").cancel-btn Cancel
+                if category === "gameconsole"
+                  a(href= item ? item.url : "/shop/gameconsoles").cancel-btn Cancel
+                if category === "accessory"
+                  a(href= item ? item.url : "/shop/accessories").cancel-btn Cancel
   if errors
     ul
       each error in errors

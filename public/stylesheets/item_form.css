@@ -104,3 +104,7 @@ h1.form-title {
 form .item-detail {
   margin-top: 12px;
 }
+
+form {
+  width: 100%;
+}
