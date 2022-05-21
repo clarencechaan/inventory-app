@@ -97,6 +97,6 @@
   object-fit: contain;
 }
 
-.item-detail-info span.category {
+.item-detail-info a.category {
   font-family: "Raleway", sans-serif;
 }

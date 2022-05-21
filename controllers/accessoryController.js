@@ -172,8 +172,42 @@ exports.accessory_delete_post = function (req, res) {
 };
 
 // Display Accessory update form on GET.
-exports.accessory_update_get = function (req, res) {
-  res.send("NOT IMPLEMENTED: Accessory update GET");
+exports.accessory_update_get = function (req, res, next) {
+  // Get accessory and gameconsoles for form.
+  async.parallel(
+    {
+      accessory: function (callback) {
+        Accessory.findById(req.params.id)
+          .populate("gameconsole")
+          .exec(callback);
+      },
+      gameconsoles: function (callback) {
+        GameConsole.find({})
+          .collation({ locale: "en" })
+          .sort({ name: 1 })
+          .exec(callback);
+      },
+    },
+    function (err, results) {
+      if (err) {
+        return next(err);
+      }
+      if (results.accessory == null) {
+        // No results.
+        var err = new Error("Accessory not found");
+        err.status = 404;
+        return next(err);
+      }
+      // Success.
+
+      res.render("item_form", {
+        title: "Update Accessory",
+        gameconsoles: results.gameconsoles,
+        item: results.accessory,
+        category: "accessory",
+      });
+    }
+  );
 };
 
 // Handle Accessory update on POST.

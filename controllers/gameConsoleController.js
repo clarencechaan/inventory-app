@@ -197,8 +197,26 @@ exports.gameconsole_delete_post = function (req, res) {
 };
 
 // Display GameConsole update form on GET.
-exports.gameconsole_update_get = function (req, res) {
-  res.send("NOT IMPLEMENTED: GameConsole update GET");
+exports.gameconsole_update_get = function (req, res, next) {
+  // Get gameconsole for form.
+  GameConsole.findById(req.params.id).exec(function (err, gameconsole) {
+    if (err) {
+      return next(err);
+    }
+    if (gameconsole == null) {
+      // No results.
+      var err = new Error("Console not found");
+      err.status = 404;
+      return next(err);
+    }
+    // Success.
+
+    res.render("item_form", {
+      title: "Update Console",
+      item: gameconsole,
+      category: "gameconsole",
+    });
+  });
 };
 
 // Handle GameConsole update on POST.

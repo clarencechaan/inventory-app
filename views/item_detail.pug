@@ -8,11 +8,11 @@ block content
           img(src=item.img_url)
         .item-detail-info
           if category === "game"
-            span.category Game
+            a(href="/shop/games").category Game
           else if category === "accessory"
-            span.category Accessory
+            a(href="/shop/accessories").category Accessory
           else if category === "gameconsole"
-            span.category Console
+            a(href="/shop/gameconsoles").category Console
           h2 #{ item.name }
           if item.gameconsole
             h3.subtext for 

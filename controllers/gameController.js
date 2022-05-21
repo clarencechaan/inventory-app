@@ -260,8 +260,50 @@ exports.game_delete_post = function (req, res) {
 };
 
 // Display Game update form on GET.
-exports.game_update_get = function (req, res) {
-  res.send("NOT IMPLEMENTED: Game update GET");
+exports.game_update_get = function (req, res, next) {
+  // Get game, gameconsoles, and genres for form.
+  async.parallel(
+    {
+      game: function (callback) {
+        Game.findById(req.params.id)
+          .populate("gameconsole")
+          .populate("genre")
+          .exec(callback);
+      },
+      gameconsoles: function (callback) {
+        GameConsole.find({})
+          .collation({ locale: "en" })
+          .sort({ name: 1 })
+          .exec(callback);
+      },
+      genres: function (callback) {
+        Genre.find({})
+          .collation({ locale: "en" })
+          .sort({ name: 1 })
+          .exec(callback);
+      },
+    },
+    function (err, results) {
+      if (err) {
+        return next(err);
+      }
+      if (results.game == null) {
+        // No results.
+        var err = new Error("Game not found");
+        err.status = 404;
+        return next(err);
+      }
+      // Success.
+
+      res.render("item_form", {
+        title: "Update Game",
+        gameconsoles: results.gameconsoles,
+        genres: results.genres,
+        item: results.game,
+        category: "game",
+      });
+    }
+  );
 };
 
 // Handle Game update on POST.

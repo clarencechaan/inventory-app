@@ -21,10 +21,10 @@ h3 input {
 }
 
 .item-description textarea {
-  width: 80%;
+  width: 90%;
   font-size: inherit;
   font-family: inherit;
-  height: 130px;
+  height: 200px;
   padding: 6px;
   box-sizing: border-box;
   resize: none;
