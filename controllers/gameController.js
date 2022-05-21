@@ -35,7 +35,7 @@ exports.index = function (req, res) {
         GameConsole.find({}).limit(1).sort({ name: -1 }).exec(cb);
       },
       deal_item: function (cb) {
-        GameConsole.findById("62854d8a15a3ecf1d9b5523c", cb);
+        GameConsole.findById("628956f1bc21355c481de408", cb);
       },
     },
     function (err, results) {
