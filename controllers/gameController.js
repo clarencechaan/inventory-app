@@ -209,7 +209,7 @@ exports.game_create_post = [
           res.render("item_form", {
             title: "Create Game",
             gameconsoles: results.gameconsoles,
-            genre: results.genre,
+            genres: results.genres,
             item: game,
             category: "game",
             errors: errors.array(),
@@ -376,7 +376,7 @@ exports.game_update_post = [
           res.render("item_form", {
             title: "Update Game",
             gameconsoles: results.gameconsoles,
-            genre: results.genre,
+            genres: results.genres,
             item: game,
             category: "game",
             errors: errors.array(),

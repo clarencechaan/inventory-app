@@ -100,3 +100,37 @@
 .item-detail-info a.category {
   font-family: "Raleway", sans-serif;
 }
+
+.update-delete-btns {
+  display: flex;
+  column-gap: 16px;
+}
+
+.update-delete-btns > a {
+  height: 45px;
+  width: 150px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+  font-weight: 300;
+  border-radius: 6px;
+  margin-top: 16px;
+  box-sizing: border-box;
+  border: none;
+  cursor: pointer;
+  color: white;
+  font-family: inherit;
+}
+
+.update-delete-btns > a:hover {
+  opacity: 0.75;
+}
+
+.update-delete-btns .update-btn {
+  background-color: black;
+}
+
+.update-delete-btns .delete-btn {
+  background-color: rgb(254, 76, 80);
+}

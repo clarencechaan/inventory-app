@@ -7,7 +7,7 @@ block content
       h1 #{title}
       .item-detail
         label(for="item-img").img-container.bordered
-          if item 
+          if item && item.img_url
             span
             img(src= item.img_url)
           else
@@ -16,15 +16,15 @@ block content
           input#img-url(
               type="hidden",
               name="img_url",
-              required="true"
-              value= item ? item.img_url : ""
+              required=true
+              value= item ? item.img_url : null
             )          
           input(type="file",
             id="item-img",
             className="hidden",
             accept="image/png, image/jpeg",
             max-file-size="10485760",
-            required= item ? false : true,
+            required= item && item.img_url ? false : true,
             )
         .item-detail-info
           h2

@@ -58,16 +58,19 @@ exports.accessory_detail = function (req, res) {
 // Display Accessory create form on GET.
 exports.accessory_create_get = function (req, res) {
   // Get all gameconsoles, which we can use for adding to our accessory.
-  GameConsole.find({}, (err, gameconsoles) => {
-    if (err) {
-      return next(err);
-    }
-    res.render("item_form", {
-      title: "Create Accessory",
-      gameconsoles: gameconsoles,
-      category: "accessory",
+  GameConsole.find({})
+    .collation({ locale: "en" })
+    .sort({ name: 1 })
+    .exec((err, gameconsoles) => {
+      if (err) {
+        return next(err);
+      }
+      res.render("item_form", {
+        title: "Create Accessory",
+        gameconsoles: gameconsoles,
+        category: "accessory",
+      });
     });
-  });
 };
 
 // Handle Accessory create on POST.
@@ -116,19 +119,22 @@ exports.accessory_create_post = [
       // There are errors. Render form again with sanitized values/error messages.
 
       // Get all gameconsoles for form.
-      GameConsole.find({}, function (err, gameconsoles) {
-        if (err) {
-          return next(err);
-        }
+      GameConsole.find({})
+        .collation({ locale: "en" })
+        .sort({ name: 1 })
+        .exec(function (err, gameconsoles) {
+          if (err) {
+            return next(err);
+          }
 
-        res.render("item_form", {
-          title: "Create Accessory",
-          gameconsoles: gameconsoles,
-          item: accessory,
-          category: "accessory",
-          errors: errors.array(),
+          res.render("item_form", {
+            title: "Create Accessory",
+            gameconsoles: gameconsoles,
+            item: accessory,
+            category: "accessory",
+            errors: errors.array(),
+          });
         });
-      });
       return;
     } else {
       // Data from form is valid. Save accessory.
@@ -257,19 +263,22 @@ exports.accessory_update_post = [
       // There are errors. Render form again with sanitized values/error messages.
 
       // Get all gameconsoles for form.
-      GameConsole.find({}, function (err, gameconsoles) {
-        if (err) {
-          return next(err);
-        }
+      GameConsole.find({})
+        .collation({ locale: "en" })
+        .sort({ name: 1 })
+        .exec(function (err, gameconsoles) {
+          if (err) {
+            return next(err);
+          }
 
-        res.render("item_form", {
-          title: "Update Accessory",
-          gameconsoles: gameconsoles,
-          item: accessory,
-          category: "accessory",
-          errors: errors.array(),
+          res.render("item_form", {
+            title: "Update Accessory",
+            gameconsoles: gameconsoles,
+            item: accessory,
+            category: "accessory",
+            errors: errors.array(),
+          });
         });
-      });
       return;
     } else {
       // Data from form is valid. Update the record.

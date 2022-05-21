@@ -46,27 +46,28 @@ block content
             .hider
           .hider
       .deal-of-the-week
-        .deal-content
-          div
-            h1 Deal Of The Week
-              br
-              .sub-text #{ deal_item.name } 
-                span.price $#{ Number.parseFloat(deal_item.price).toFixed(2) }
-            .underline
-            .timer
-              .circle
-                .count.day 2
-                .unit Day
-              .circle
-                .count.hour 23
-                .unit Hour
-              .circle
-                .count.min 48
-                .unit Min
-              .circle
-                .count.sec 8
-                .unit Sec
-            a(href=deal_item.url).shop-now-btn.black SHOP NOW
+        if deal_item
+          .deal-content
+            div
+              h1 Deal Of The Week
+                br
+                .sub-text #{ deal_item.name } 
+                  span.price $#{ Number.parseFloat(deal_item.price).toFixed(2) }
+              .underline
+              .timer
+                .circle
+                  .count.day 2
+                  .unit Day
+                .circle
+                  .count.hour 23
+                  .unit Hour
+                .circle
+                  .count.min 48
+                  .unit Min
+                .circle
+                  .count.sec 8
+                  .unit Sec
+              a(href=deal_item.url).shop-now-btn.black SHOP NOW
       .best-sellers
         h1 Best Sellers
         .underline
