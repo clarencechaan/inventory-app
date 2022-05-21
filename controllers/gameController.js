@@ -1,6 +1,7 @@
 var Game = require("../models/game");
 var Accessory = require("../models/accessory");
 var GameConsole = require("../models/gameconsole");
+var Genre = require("../models/genre");
 var async = require("async");
 
 exports.index = function (req, res) {
@@ -105,7 +106,28 @@ exports.game_detail = function (req, res) {
 
 // Display Game create form on GET.
 exports.game_create_get = function (req, res) {
-  res.send("NOT IMPLEMENTED: Game create GET");
+  // Get all gameconsoles and genres, which we can use for adding to our game.
+  async.parallel(
+    {
+      gameconsoles: function (callback) {
+        GameConsole.find(callback);
+      },
+      genres: function (callback) {
+        Genre.find(callback);
+      },
+    },
+    function (err, results) {
+      if (err) {
+        return next(err);
+      }
+      res.render("item_form", {
+        title: "Create Game",
+        gameconsoles: results.gameconsoles,
+        genres: results.genres,
+        category: "game",
+      });
+    }
+  );
 };
 
 // Handle Game create on POST.

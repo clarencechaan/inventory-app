@@ -1,0 +1,70 @@
+extends layout
+
+block content
+  form(method="POST", action="")
+    .main
+    .main-content
+      .item-detail
+        label(for="item-img").img-container.bordered
+          span Upload an image (PNG/JPG)
+          img(src="")
+          input(type="file",
+            id="item-img",
+            className="hidden",
+            accept="image/png, image/jpeg",
+            max-file-size="10485760"
+            required="true"
+            )
+        .item-detail-info
+          h2
+            if category === "game"
+              input(type="text" placeholder="Title" required="true")
+            else
+              input(type="text" placeholder="Name" required="true")
+            if category === "game" || category === "accessory"
+              h3.subtext for 
+                a(href="") 
+                select#gameconsole.form-control(
+                  type="select",
+                  placeholder="Select Console",
+                  name="gameconsole",
+                  required="true"
+                )
+                  - gameconsoles.sort(function(a, b) {let textA = a.name; let textB = b.name; return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;});
+                  each gameconsole in gameconsoles
+                    option(
+                      value=gameconsole._id,
+                      selected= false,
+                    ) #{ gameconsole.name }
+            else if category === "gameconsole"
+              h3.subtext by 
+                input(type="text" placeholder="Manufacturer" required="true")
+          block item-info
+            h2.price $
+              input(type="number" min="1" max="10000" placeholder="0.00" required="true")
+            .item-description 
+              textarea(name="", placeholder="Description" required="true")
+            .fader.hidden
+            button.read-more.hidden Read More
+            if category === "game"
+              h4 Genre:
+              .item-genre 
+                select#genre.form-control(
+                  type="select",
+                  placeholder="Select Genre",
+                  name="genre",
+                  required="true"
+                )
+                  - genres.sort(function(a, b) {let textA = a.name; let textB = b.name; return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;});
+                  each genre in genres
+                    option(
+                      value=genre._id,
+                      selected= false,
+                    ) #{ genre.name }
+            h4 In Stock:
+            .item-stock 
+              input(type="number" step="1" min="0" max="10000" placeholder="0" required="true")
+            .submit-cancel-btns
+              button.submit-btn(type="submit") Submit
+              a(href= "javascript:history.back()").cancel-btn Cancel
+  script(src="/scripts/item_form.js")

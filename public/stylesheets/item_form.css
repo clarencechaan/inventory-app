@@ -1,0 +1,96 @@
+input,
+select {
+  font-family: inherit;
+  font-size: inherit;
+}
+
+h2 input {
+  padding-left: 6px;
+  border: none;
+  border-bottom: 1px solid gray;
+}
+
+h2.price input {
+  width: 135px;
+}
+
+h3 select,
+h3 input {
+  margin-top: 12px;
+  margin-left: 6px;
+}
+
+.item-description textarea {
+  width: 80%;
+  font-size: inherit;
+  font-family: inherit;
+  height: 130px;
+  padding: 6px;
+  box-sizing: border-box;
+  resize: none;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+.item-detail-info input,
+.item-detail-info select {
+  border: none;
+  border-bottom: 1px solid gray;
+}
+
+.img-container.bordered {
+  border: 1px solid gray;
+  cursor: pointer;
+}
+
+.img-container.bordered span {
+  position: absolute;
+  top: 50%;
+  font-size: 32px;
+}
+
+.img-container.bordered img {
+  z-index: 1;
+}
+
+button.submit-btn {
+  height: 45px;
+  width: 150px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+  font-weight: 300;
+  border-radius: 6px;
+  margin-top: 16px;
+  box-sizing: border-box;
+  border: none;
+  background-color: black;
+  cursor: pointer;
+  color: white;
+  font-family: inherit;
+}
+
+button.submit-btn:hover {
+  opacity: 0.75;
+}
+
+.img-container.bordered input {
+  border: 1px solid transparent;
+  width: 0;
+}
+
+.submit-cancel-btns {
+  display: flex;
+  column-gap: 16px;
+}
