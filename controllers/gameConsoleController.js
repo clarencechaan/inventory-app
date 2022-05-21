@@ -2,10 +2,12 @@ var GameConsole = require("../models/gameconsole");
 var Game = require("../models/game");
 var Accessory = require("../models/accessory");
 var async = require("async");
+const { body, validationResult } = require("express-validator");
 
 // Display list of all GameConsoles.
 exports.gameconsole_list = function (req, res) {
   GameConsole.find({})
+    .collation({ locale: "en" })
     .sort({ name: 1 })
     .exec(function (err, gameconsole_list) {
       if (err) {
@@ -56,9 +58,69 @@ exports.gameconsole_create_get = function (req, res) {
 };
 
 // Handle GameConsole create on POST.
-exports.gameconsole_create_post = function (req, res) {
-  res.send("NOT IMPLEMENTED: GameConsole create POST");
-};
+exports.gameconsole_create_post = [
+  // Validate and sanitize fields.
+  body("name", "Name must not be empty.")
+    .trim()
+    .isLength({ min: 1, max: 72 })
+    .escape(),
+  body("manufacturer", "Manufacturer must not be empty.")
+    .trim()
+    .isLength({ min: 1, max: 72 })
+    .escape(),
+  body("price", "Price must be a number between 1 and 10000.").isNumeric({
+    min: 1,
+    max: 10000,
+  }),
+  body("description", "Description must not be empty.")
+    .trim()
+    .isLength({ min: 1, max: 1500 })
+    .escape(),
+  body(
+    "num_in_stock",
+    "Number in stock must be a number between 0 and 10000."
+  ).isNumeric({
+    min: 0,
+    max: 10000,
+  }),
+  body("img_url", "Image URL must not be empty.").isURL(),
+  // Process request after validation and sanitization.
+  (req, res, next) => {
+    // Extract the validation errors from a request.
+    const errors = validationResult(req);
+
+    // Create a GameConsole object with escaped and trimmed data.
+    var gameconsole = new GameConsole({
+      name: req.body.name,
+      manufacturer: req.body.manufacturer,
+      price: req.body.price,
+      description: req.body.description,
+      num_in_stock: req.body.num_in_stock,
+      img_url: req.body.img_url,
+    });
+
+    if (!errors.isEmpty()) {
+      // There are errors. Render form again with sanitized values/error messages.
+
+      res.render("item_form", {
+        title: "Create Console",
+        item: gameconsole,
+        category: "gameconsole",
+        errors: errors.array(),
+      });
+      return;
+    } else {
+      // Data from form is valid. Save gameconsole.
+      gameconsole.save(function (err) {
+        if (err) {
+          return next(err);
+        }
+        //successful - redirect to new gameconsole record.
+        res.redirect(gameconsole.url);
+      });
+    }
+  },
+];
 
 // Display GameConsole delete form on GET.
 exports.gameconsole_delete_get = function (req, res) {

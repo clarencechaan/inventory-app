@@ -40,7 +40,7 @@ block content
                       else if item.manufacturer
                         .item-console #{ item.manufacturer }
                       .item-name #{ item.name }
-                      .item-price $#{ item.price }
+                      .item-price $#{ Number.parseFloat(item.price).toFixed(2) }
                 .item-window
                   button.add-to-cart VIEW DETAILS
             .hider
@@ -51,7 +51,7 @@ block content
             h1 Deal Of The Week
               br
               .sub-text #{ deal_item.name } 
-                span.price $#{ deal_item.price }
+                span.price $#{ Number.parseFloat(deal_item.price).toFixed(2) }
             .underline
             .timer
               .circle
@@ -83,7 +83,7 @@ block content
                       else if item.manufacturer
                         .item-console #{ item.manufacturer }
                       .item-name #{ item.name }
-                      .item-price $#{ item.price }
+                      .item-price $#{ Number.parseFloat(item.price).toFixed(2) }
                 .item-window
                   button.add-to-cart VIEW DETAILS
 

@@ -3,6 +3,7 @@ var Accessory = require("../models/accessory");
 var GameConsole = require("../models/gameconsole");
 var Genre = require("../models/genre");
 var async = require("async");
+const { body, validationResult } = require("express-validator");
 
 exports.index = function (req, res) {
   async.parallel(
@@ -68,10 +69,17 @@ exports.game_list = function (req, res, next) {
   async.parallel(
     {
       game_list: function (cb) {
-        Game.find({}).sort({ name: 1 }).populate("gameconsole").exec(cb);
+        Game.find({})
+          .collation({ locale: "en" })
+          .sort({ name: 1 })
+          .populate("gameconsole")
+          .exec(cb);
       },
       gameconsole_list: function (cb) {
-        GameConsole.find({}).sort({ name: 1 }).exec(cb);
+        GameConsole.find({})
+          .collation({ locale: "en" })
+          .sort({ name: 1 })
+          .exec(cb);
       },
     },
     function (err, results) {
@@ -110,10 +118,12 @@ exports.game_create_get = function (req, res) {
   async.parallel(
     {
       gameconsoles: function (callback) {
-        GameConsole.find(callback);
+        GameConsole.find(callback)
+          .collation({ locale: "en" })
+          .sort({ name: 1 });
       },
       genres: function (callback) {
-        Genre.find(callback);
+        Genre.find(callback).collation({ locale: "en" }).sort({ name: 1 });
       },
     },
     function (err, results) {
@@ -131,9 +141,94 @@ exports.game_create_get = function (req, res) {
 };
 
 // Handle Game create on POST.
-exports.game_create_post = function (req, res) {
-  res.send("NOT IMPLEMENTED: Game create POST");
-};
+exports.game_create_post = [
+  // Validate and sanitize fields.
+  body("title", "Title must not be empty.")
+    .trim()
+    .isLength({ min: 1, max: 72 })
+    .escape(),
+  body("gameconsole", "Console must not be empty.")
+    .trim()
+    .isLength({ min: 1, max: 72 })
+    .escape(),
+  body("price", "Price must be a number between 1 and 10000.").isNumeric({
+    min: 1,
+    max: 10000,
+  }),
+  body("description", "Description must not be empty.")
+    .trim()
+    .isLength({ min: 1, max: 1500 })
+    .escape(),
+  body("genre", "Genre must not be empty.")
+    .trim()
+    .isLength({ min: 1, max: 100 })
+    .escape(),
+  body(
+    "num_in_stock",
+    "Number in stock must be a number between 0 and 10000."
+  ).isNumeric({
+    min: 0,
+    max: 10000,
+  }),
+  body("img_url", "Image URL must not be empty.").isURL(),
+
+  // Process request after validation and sanitization.
+  (req, res, next) => {
+    // Extract the validation errors from a request.
+    const errors = validationResult(req);
+
+    // Create a Game object with escaped and trimmed data.
+    var game = new Game({
+      name: req.body.title,
+      gameconsole: req.body.gameconsole,
+      price: req.body.price,
+      description: req.body.description,
+      genre: req.body.genre,
+      num_in_stock: req.body.num_in_stock,
+      img_url: req.body.img_url,
+    });
+
+    if (!errors.isEmpty()) {
+      // There are errors. Render form again with sanitized values/error messages.
+
+      // Get all gameconsoles and genres for form.
+      async.parallel(
+        {
+          gameconsoles: function (callback) {
+            GameConsole.find(callback);
+          },
+          genres: function (callback) {
+            Genre.find(callback);
+          },
+        },
+        function (err, results) {
+          if (err) {
+            return next(err);
+          }
+
+          res.render("item_form", {
+            title: "Create Game",
+            gameconsoles: results.gameconsoles,
+            genre: results.genre,
+            item: game,
+            category: "game",
+            errors: errors.array(),
+          });
+        }
+      );
+      return;
+    } else {
+      // Data from form is valid. Save game.
+      game.save(function (err) {
+        if (err) {
+          return next(err);
+        }
+        //successful - redirect to new game record.
+        res.redirect(game.url);
+      });
+    }
+  },
+];
 
 // Display Game delete form on GET.
 exports.game_delete_get = function (req, res) {

@@ -7,6 +7,12 @@ block content
         .img-container
           img(src=item.img_url)
         .item-detail-info
+          if category === "game"
+            span.category Game
+          else if category === "accessory"
+            span.category Accessory
+          else if category === "gameconsole"
+            span.category Console
           h2 #{ item.name }
           if item.gameconsole
             h3.subtext for 
@@ -14,7 +20,7 @@ block content
           else if item.manufacturer
             h3.subtext by #{item.manufacturer}
           block item-info
-            h2.price $#{item.price}
+            h2.price $#{ Number.parseFloat(item.price).toFixed(2) }
             .item-description #{item.description}
             .fader.hidden
             button.read-more.hidden Read More

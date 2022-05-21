@@ -11,7 +11,7 @@ block content
           img(src="")
           input#img-url(
               type="hidden",
-              name="id",
+              name="img_url",
               required="true"
             )          
           input(type="file",
@@ -24,11 +24,11 @@ block content
         .item-detail-info
           h2
             if category === "game"
-              input(type="text" placeholder="Title" required="true" maxlength="72")
+              input(type="text" placeholder="Title" required="true" maxlength="72" name="title")
             else if category === "gameconsole"
-              input(type="text" placeholder="Name" required="true" maxlength="44")
+              input(type="text" placeholder="Name" required="true" maxlength="44" name="name")
             else if category === "accessory"
-              input(type="text" placeholder="Name" required="true" maxlength="72")
+              input(type="text" placeholder="Name" required="true" maxlength="72" name="name")
             if category === "game" || category === "accessory"
               h3.subtext for 
                 a(href="") 
@@ -38,7 +38,6 @@ block content
                   name="gameconsole",
                   required="true"
                 )
-                  - gameconsoles.sort(function(a, b) {let textA = a.name; let textB = b.name; return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;});
                   each gameconsole in gameconsoles
                     option(
                       value=gameconsole._id,
@@ -46,24 +45,23 @@ block content
                     ) #{ gameconsole.name }
             else if category === "gameconsole"
               h3.subtext by 
-                input(type="text" placeholder="Manufacturer" required="true")
+                input(name="manufacturer" type="text" placeholder="Manufacturer" required="true")
           block item-info
             h2.price $
-              input(type="number" min="1" max="10000" placeholder="0.00" required="true")
+              input(name="price" type="number" min="1" max="10000" placeholder="0.00" step="0.01" required="true")
             .item-description 
-              textarea(name="", placeholder="Description" required="true" maxlength="1500")
+              textarea(name="description", placeholder="Description" required="true" maxlength="1500")
             .fader.hidden
             button.read-more.hidden Read More
             if category === "game"
               h4 Genre:
               .item-genre 
                 select#genre.form-control(
+                  name="genre",
                   type="select",
                   placeholder="Select Genre",
-                  name="genre",
                   required="true"
                 )
-                  - genres.sort(function(a, b) {let textA = a.name; let textB = b.name; return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;});
                   each genre in genres
                     option(
                       value=genre._id,
@@ -71,7 +69,7 @@ block content
                     ) #{ genre.name }
             h4 In Stock:
             .item-stock 
-              input(type="number" step="1" min="0" max="10000" placeholder="0" required="true")
+              input(name="num_in_stock" type="number" step="1" min="0" max="10000" placeholder="0" required="true")
             .submit-cancel-btns
               button.submit-btn(type="submit") Submit
               if category === "game"
@@ -80,4 +78,8 @@ block content
                 a(href="/shop/gameconsoles").cancel-btn Cancel
               if category === "accessory"
                 a(href="/shop/accessories").cancel-btn Cancel
+  if errors
+    ul
+      each error in errors
+        li!= error.msg
   script(src="/scripts/item_form.js")

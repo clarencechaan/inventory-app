@@ -96,3 +96,7 @@
   height: 140px;
   object-fit: contain;
 }
+
+.item-detail-info span.category {
+  font-family: "Raleway", sans-serif;
+}
