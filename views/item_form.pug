@@ -24,9 +24,11 @@ block content
         .item-detail-info
           h2
             if category === "game"
-              input(type="text" placeholder="Title" required="true")
-            else
-              input(type="text" placeholder="Name" required="true")
+              input(type="text" placeholder="Title" required="true" maxlength="72")
+            else if category === "gameconsole"
+              input(type="text" placeholder="Name" required="true" maxlength="44")
+            else if category === "accessory"
+              input(type="text" placeholder="Name" required="true" maxlength="72")
             if category === "game" || category === "accessory"
               h3.subtext for 
                 a(href="") 
@@ -49,7 +51,7 @@ block content
             h2.price $
               input(type="number" min="1" max="10000" placeholder="0.00" required="true")
             .item-description 
-              textarea(name="", placeholder="Description" required="true")
+              textarea(name="", placeholder="Description" required="true" maxlength="1500")
             .fader.hidden
             button.read-more.hidden Read More
             if category === "game"

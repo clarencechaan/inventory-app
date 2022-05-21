@@ -43,6 +43,7 @@
 
 .item-detail-info {
   width: 50%;
+  word-wrap: break-word;
 }
 
 .item-detail-info .item-description {
