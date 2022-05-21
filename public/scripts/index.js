@@ -61,10 +61,10 @@ function setTimerElem() {
   const minutesElem = document.querySelector(".count.min");
   const secondsElem = document.querySelector(".count.sec");
 
-  daysElem.innerText = durationObj.days;
-  hoursElem.innerText = durationObj.hours;
-  minutesElem.innerText = durationObj.minutes;
-  secondsElem.innerText = durationObj.seconds;
+  daysElem.innerText = durationObj.days.toFixed(0);
+  hoursElem.innerText = durationObj.hours.toFixed(0);
+  minutesElem.innerText = durationObj.minutes.toFixed(0);
+  secondsElem.innerText = durationObj.seconds.toFixed(0);
 }
 
 function startTimer() {
