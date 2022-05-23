@@ -4,11 +4,6 @@ var async = require("async");
 const { body, validationResult } = require("express-validator");
 
 // Display list of all Accessories.
-exports.accessory_list = function (req, res) {
-  res.send("NOT IMPLEMENTED: Accessory list");
-};
-
-// Display list of all Games.
 exports.accessory_list = function (req, res, next) {
   async.parallel(
     {
