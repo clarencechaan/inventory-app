@@ -2,7 +2,7 @@
 
 Web storefront for a gaming shop. Created using MongoDB, Express, and Node.
 
-Live demo: https://gamego.onrender.com/
+[Live Demo](https://gamego-inv.fly.dev/)
 
 UML diagram of the database
 
